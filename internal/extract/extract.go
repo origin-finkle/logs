@@ -17,8 +17,15 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
+func filenameForReportCode(folder, code string) string {
+	return fmt.Sprintf("%s/%s.json", folder, code)
+}
+
 func Extract(app *kong.Context, reportIDs []string, folder string) {
 	ctx := context.Background()
+	if folder == "" {
+		app.Fatalf("--folder is mandatory")
+	}
 	if len(reportIDs) == 0 {
 		end := time.Now()
 		start := end.AddDate(0, 0, -14)
@@ -32,6 +39,13 @@ func Extract(app *kong.Context, reportIDs []string, folder string) {
 			app.Fatalf("error while requesting reports: %s", err)
 		}
 		for _, report := range q.ReportData.Reports.Data {
+			logrus.Debugf("Checking report %s", report.Code)
+			location := filenameForReportCode(folder, string(report.Code))
+			if _, err := os.Stat(location); err == nil {
+				// file exists, skip
+				logrus.Infof("skipping %s, as it has already been processed", report.Code)
+				continue
+			}
 			reportIDs = append(reportIDs, string(report.Code))
 		}
 	}
@@ -41,7 +55,7 @@ func Extract(app *kong.Context, reportIDs []string, folder string) {
 		wg.Add(1)
 		go func(code string) {
 			defer wg.Done()
-			location := fmt.Sprintf("%s/%s.json", folder, code)
+			location := filenameForReportCode(folder, code)
 			logrus.Infof("will write to file %s", location)
 			file, err := os.Create(location)
 			if err != nil {
