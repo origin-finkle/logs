@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/origin-finkle/logs/internal/models"
@@ -23,4 +24,11 @@ func loadConsumables(folder string) error {
 		data.Consumables[consumable.ID] = consumable
 	}
 	return nil
+}
+
+func GetConsumable(id int64) (*models.Consumable, error) {
+	if c, ok := data.Consumables[id]; ok {
+		return c, nil
+	}
+	return nil, fmt.Errorf("consumable for ability=%d not found", id)
 }

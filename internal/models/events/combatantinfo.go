@@ -1,0 +1,117 @@
+package events
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/origin-finkle/logs/internal/config"
+	"github.com/origin-finkle/logs/internal/logger"
+	"github.com/origin-finkle/logs/internal/models"
+	"github.com/origin-finkle/logs/internal/models/remark"
+)
+
+type CombatantInfo struct {
+	Timestamp int64          `json:"timestamp"`
+	Type      string         `json:"type"`
+	SourceID  int64          `json:"sourceID"`
+	Gear      []*models.Gear `json:"gear"`
+	Auras     []*models.Aura `json:"auras"`
+	Talents   []struct {
+		ID int64 `json:"id"`
+	}
+}
+
+func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis, pa *models.PlayerAnalysis, fa *models.FightAnalysis) error {
+	points := [3]int64{}
+	for idx, t := range ci.Talents {
+		points[idx] = t.ID
+	}
+	fa.Talents = models.NewTalents(fa, points)
+	logger.FromContext(ctx).Debugf("player spec is %s", fa.Talents.Spec)
+	fa.Auras = make(map[int64]*models.Aura)
+	for _, aura := range ci.Auras {
+		aura.Events = make([]struct{}, 0)
+		fa.Auras[aura.Ability] = aura
+	}
+	fa.Gear = make([]*models.Gear, 0)
+	for _, gear := range ci.Gear {
+		gear.ComputeWowheadAttr()
+		gear.ComputeUUID()
+		if gear.ID == 0 {
+			continue
+		}
+		fa.Gear = append(fa.Gear, gear)
+		wowheadData, err := config.GetWowheadItem(ctx, gear.ID)
+		if err != nil {
+			logger.FromContext(ctx).WithError(err).Debugf("could not load item %d", gear.ID)
+			return err
+		}
+		gear.WowheadData = wowheadData
+		if count := gear.CountMissingGems(); count > 0 {
+			fa.AddRemark(remark.MissingGems{
+				ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				Count:           int(wowheadData.Sockets) - len(gear.Gems),
+			})
+		}
+		for _, gem := range gear.Gems {
+			gemData, err := config.GetGem(gem.ID)
+			if err != nil {
+				logger.FromContext(ctx).WithError(err).Debugf("could not load gem %d", gem.ID)
+				return err
+			}
+			if gemData.IsRestricted(ctx, fa) {
+				fa.AddRemark(remark.InvalidGem{
+					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+					WowheadAttr:     fmt.Sprintf("item=%d", gem.ID),
+				})
+			}
+		}
+		if gear.PermanentEnchant != nil {
+			if enchant, err := config.GetEnchant(*gear.PermanentEnchant); err != nil {
+				logger.FromContext(ctx).WithError(err).Debugf("could not load enchant %d", *gear.PermanentEnchant)
+				// for now, silently ignore
+				fa.AddRemark(remark.InvalidEnchant{
+					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.PermanentEnchant),
+					Slot:            gear.WowheadData.Slot,
+					EnchantID:       *gear.PermanentEnchant,
+				})
+			} else if enchant.IsRestricted(ctx, fa) {
+				fa.AddRemark(remark.InvalidEnchant{
+					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.PermanentEnchant),
+					Slot:            gear.WowheadData.Slot,
+					EnchantID:       *gear.PermanentEnchant,
+				})
+			}
+		} else if gear.ShouldBeEnchanted() {
+			fa.AddRemark(remark.NoEnchant{
+				ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+			})
+		}
+
+		if gear.TemporaryEnchant != nil {
+			if enchant, err := config.GetTemporaryEnchant(*gear.TemporaryEnchant); err != nil {
+				logger.FromContext(ctx).WithError(err).Debugf("could not load enchant %d", *gear.TemporaryEnchant)
+				// for now, silently ignore
+				// return err
+			} else if enchant.IsRestricted(ctx, fa) {
+				fa.AddRemark(remark.InvalidTemporaryEnchant{
+					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				})
+			}
+		} else if gear.ShouldHaveTemporaryEnchant() {
+			// check if there could be a potential windfury
+			if fa.CouldBenefitFromWindfury(analysis) {
+				fa.AddRemark(remark.NoTemporaryEnchantButWindfury{
+					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				})
+			} else {
+				fa.AddRemark(remark.NoTemporaryEnchant{
+					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				})
+			}
+		}
+	}
+	return nil
+}
+
+func (ci *CombatantInfo) GetSource() int64 { return ci.SourceID }

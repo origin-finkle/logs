@@ -13,12 +13,7 @@ var CLI struct {
 		Folder    string   `name:"folder" help:"Folder to store data in" type:"existingdir"`
 	} `cmd:"" help:"Extract reports. If no report ID is given, will try to extract reports from last 14 days"`
 
-	Analyze struct {
-		ReportIDs      []string `arg:"" optional:"" name:"report-id" help:"ID of the report to extract"`
-		ReportsFolder  string   `name:"reports-folder" help:"Folder where reports are stored"`
-		AnalysisFolder string   `name:"analysis-folder" help:"Folder where analysis are stored" type:"existingdir"`
-		ConfigFolder   string   `name:"config-folder" help:"Folder where configuration are stored" type:"existingdir"`
-	} `cmd:"" help:"Analyze reports. If no report ID is given, will analyze every report"`
+	Analyze analyze.Analyze `cmd:"" help:"Analyze reports. If no report ID is given, will analyze every report"`
 
 	Verbose bool `optional:"" name:"verbose" help:"Activate debug logs"`
 }
@@ -32,7 +27,7 @@ func main() {
 	case "extract", "extract <report-id>":
 		extract.Extract(ctx, CLI.Extract.ReportIDs, CLI.Extract.Folder)
 	case "analyze", "analyze <report-id>":
-		analyze.Analyze(ctx, CLI.Analyze.ReportIDs, CLI.Analyze.AnalysisFolder, CLI.Analyze.ReportsFolder, CLI.Analyze.ConfigFolder)
+		CLI.Analyze.Run(ctx)
 	default:
 		ctx.Fatalf("command %s not implemented", ctx.Command())
 	}

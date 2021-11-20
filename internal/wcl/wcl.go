@@ -20,12 +20,13 @@ var (
 	clientID     string
 	clientSecret string
 	httpClient   = &http.Client{
-		Transport: &customRoundTripper{},
+		Transport: &customRoundTripper{
+			sem: semaphore.NewWeighted(8),
+		},
 	}
-	token         string
-	tokenMutex    sync.RWMutex
-	callSemaphore = semaphore.NewWeighted(8)
-	client        = graphql.NewClient(wclURL, httpClient)
+	token      string
+	tokenMutex sync.RWMutex
+	client     = graphql.NewClient(wclURL, httpClient)
 )
 
 const (
@@ -78,10 +79,6 @@ func Query(ctx context.Context, q interface{}, variables map[string]interface{})
 	if err := authenticate(ctx); err != nil {
 		return err
 	}
-	if err := callSemaphore.Acquire(ctx, 1); err != nil {
-		return err
-	}
-	defer callSemaphore.Release(1)
 	return client.Query(ctx, q, variables)
 }
 
@@ -89,10 +86,6 @@ func QueryRaw(ctx context.Context, q interface{}, variables map[string]interface
 	if err := authenticate(ctx); err != nil {
 		return nil, err
 	}
-	if err := callSemaphore.Acquire(ctx, 1); err != nil {
-		return nil, err
-	}
-	defer callSemaphore.Release(1)
 	return client.QueryRaw(ctx, q, variables)
 }
 
@@ -106,10 +99,6 @@ func (e Error) Error() string {
 }
 
 func doQuery(ctx context.Context, req *http.Request, dest interface{}) error {
-	if err := callSemaphore.Acquire(ctx, 1); err != nil {
-		return err
-	}
-	defer callSemaphore.Release(1)
 	start := time.Now()
 	resp, err := http.DefaultClient.Do(req)
 	timing := time.Since(start)

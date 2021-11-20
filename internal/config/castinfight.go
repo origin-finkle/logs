@@ -2,6 +2,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"strconv"
 
@@ -30,3 +31,14 @@ func loadCastInFight(folder string) error {
 	}
 	return nil
 }
+
+func GetCastInFight(id int64) (*models.CastInFight, error) {
+	if v, ok := data.CastInFight[id]; ok {
+		return v, nil
+	}
+	return nil, ErrCastInFightNotFound
+}
+
+var (
+	ErrCastInFightNotFound = fmt.Errorf("cast in fight not found")
+)
