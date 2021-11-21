@@ -36,11 +36,16 @@ func (t *Talents) guessSpec() {
 	}
 }
 
+func (t *Talents) BenefitsFromWindfuryTotem() bool {
+	return specs[t.Spec].BenefitsFromWindfuryTotem
+}
+
 var (
 	specs = map[Specialization]struct {
-		HasMorePointsIn int
-		Class           Class
-		Role            map[Role]bool
+		HasMorePointsIn           int
+		Class                     Class
+		Role                      map[Role]bool
+		BenefitsFromWindfuryTotem bool
 	}{
 		Specialization_HolyPaladin: {
 			HasMorePointsIn: 0,
@@ -53,39 +58,46 @@ var (
 			Role:            map[Role]bool{Role_Tank: true, Role_Magic: true},
 		},
 		Specialization_RetributionPaladin: {
-			HasMorePointsIn: 2,
-			Class:           Class_Paladin,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           2,
+			Class:                     Class_Paladin,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_AssassinationRogue: {
-			HasMorePointsIn: 0,
-			Class:           Class_Rogue,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           0,
+			Class:                     Class_Rogue,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_CombatRogue: {
-			HasMorePointsIn: 1,
-			Class:           Class_Rogue,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           1,
+			Class:                     Class_Rogue,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_SubtletyRogue: {
-			HasMorePointsIn: 2,
-			Class:           Class_Rogue,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           2,
+			Class:                     Class_Rogue,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_ArmsWarrior: {
-			HasMorePointsIn: 0,
-			Class:           Class_Warrior,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           0,
+			Class:                     Class_Warrior,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_FuryWarrior: {
-			HasMorePointsIn: 1,
-			Class:           Class_Warrior,
-			Role:            map[Role]bool{Role_Melee: true, Role_Physical: true},
+			HasMorePointsIn:           1,
+			Class:                     Class_Warrior,
+			Role:                      map[Role]bool{Role_Melee: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_ProtectionWarrior: {
-			HasMorePointsIn: 2,
-			Class:           Class_Warrior,
-			Role:            map[Role]bool{Role_Tank: true, Role_Physical: true},
+			HasMorePointsIn:           2,
+			Class:                     Class_Warrior,
+			Role:                      map[Role]bool{Role_Tank: true, Role_Physical: true},
+			BenefitsFromWindfuryTotem: true,
 		},
 		Specialization_ElementalShaman: {
 			HasMorePointsIn: 0,

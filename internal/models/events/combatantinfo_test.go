@@ -9,10 +9,12 @@ import (
 	"github.com/origin-finkle/logs/internal/models/events"
 	"github.com/origin-finkle/logs/internal/models/remark"
 	"github.com/origin-finkle/logs/internal/testutils"
+	"github.com/sirupsen/logrus"
 )
 
 func TestCombatantInfo_MetaNotActivated(t *testing.T) {
-	ev := testutils.LoadJSONData(t, "testdata/combatantinfo.json")
+	logrus.SetLevel(logrus.DebugLevel)
+	ev := testutils.LoadJSONData(t, "testdata/combatantinfo_meta_not_activated.json")
 	analysis := &models.Analysis{
 		Data: make(map[int64]*models.PlayerAnalysis),
 	}
@@ -25,11 +27,12 @@ func TestCombatantInfo_MetaNotActivated(t *testing.T) {
 	err := events.Process(context.TODO(), ev, analysis, "test")
 	td.CmpNoError(t, err)
 	found := false
+	td.CmpLen(t, fa.Remarks, td.Gt(0))
 	for _, r := range fa.Remarks {
 		if r.Type == remark.Type_MetaNotActivated {
 			found = true
 			break
 		}
 	}
-	td.CmpTrue(t, found)
+	td.CmpTrue(t, found, "found meta_not_activated")
 }

@@ -31,8 +31,7 @@ func (fa *FightAnalysis) AddRemark(metadata remark.Metadata) {
 }
 
 func (fa *FightAnalysis) CouldBenefitFromWindfury(analysis *Analysis) bool {
-	_, ok := specBenefitsFromWFTotem[fa.Talents.Spec]
-	if ok {
+	if fa.Talents.BenefitsFromWindfuryTotem() {
 		shamanPlayers := analysis.FilterPlayers(func(pa *PlayerAnalysis) bool {
 			return pa.SubType == string(Class_Shaman) && pa.GetFight(fa.Name) != nil
 		})
@@ -40,16 +39,3 @@ func (fa *FightAnalysis) CouldBenefitFromWindfury(analysis *Analysis) bool {
 	}
 	return false
 }
-
-var (
-	specBenefitsFromWFTotem = map[Specialization]bool{
-		Specialization_ArmsWarrior:        true,
-		Specialization_FuryWarrior:        true,
-		Specialization_ProtectionWarrior:  true,
-		Specialization_AssassinationRogue: true,
-		Specialization_CombatRogue:        true,
-		Specialization_SubtletyRogue:      true,
-		Specialization_EnhancementShaman:  true,
-		Specialization_RetributionPaladin: true,
-	}
-)

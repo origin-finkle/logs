@@ -8,14 +8,58 @@ import (
 
 func TestTalents(t *testing.T) {
 	for _, data := range []struct {
-		SubType      string
-		Talents      [3]int64
-		ExpectedSpec Specialization
+		SubType                   string
+		Talents                   [3]int64
+		ExpectedSpec              Specialization
+		BenefitsFromWindfuryTotem bool
 	}{
 		{
-			SubType:      "Warlock",
-			Talents:      [3]int64{0, 21, 40},
-			ExpectedSpec: Specialization_DestructionWarlock,
+			SubType:                   "Warlock",
+			Talents:                   [3]int64{0, 21, 40},
+			ExpectedSpec:              Specialization_DestructionWarlock,
+			BenefitsFromWindfuryTotem: false,
+		},
+		{
+			SubType:                   "Warrior",
+			Talents:                   [3]int64{0, 21, 40},
+			ExpectedSpec:              Specialization_ProtectionWarrior,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Warrior",
+			Talents:                   [3]int64{40, 21, 0},
+			ExpectedSpec:              Specialization_ArmsWarrior,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Warrior",
+			Talents:                   [3]int64{21, 40, 0},
+			ExpectedSpec:              Specialization_FuryWarrior,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Rogue",
+			Talents:                   [3]int64{0, 21, 40},
+			ExpectedSpec:              Specialization_SubtletyRogue,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Rogue",
+			Talents:                   [3]int64{40, 21, 0},
+			ExpectedSpec:              Specialization_AssassinationRogue,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Rogue",
+			Talents:                   [3]int64{21, 40, 0},
+			ExpectedSpec:              Specialization_CombatRogue,
+			BenefitsFromWindfuryTotem: true,
+		},
+		{
+			SubType:                   "Paladin",
+			Talents:                   [3]int64{0, 21, 40},
+			ExpectedSpec:              Specialization_RetributionPaladin,
+			BenefitsFromWindfuryTotem: true,
 		},
 	} {
 		t.Run(string(data.ExpectedSpec), func(tt *testing.T) {
@@ -27,6 +71,7 @@ func TestTalents(t *testing.T) {
 				},
 			}, data.Talents)
 			td.Cmp(tt, talents.Spec, data.ExpectedSpec)
+			td.Cmp(tt, talents.BenefitsFromWindfuryTotem(), data.BenefitsFromWindfuryTotem)
 		})
 	}
 }

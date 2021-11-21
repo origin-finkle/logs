@@ -64,7 +64,7 @@ func (l loader) Load(folder string) error {
 	dec := json.NewDecoder(file)
 	dec.DisallowUnknownFields()
 	if err := l.Decode(dec); err != nil {
-		logger.FromContext(context.TODO()).WithError(err).Warn("could not load %s", l.Name)
+		logger.FromContext(context.TODO()).WithError(err).Warnf("could not load %s", l.Name)
 		return err
 	}
 	return nil
@@ -157,7 +157,7 @@ var cfg = []loader{
 			data.Wowhead.mu.Lock()
 			defer data.Wowhead.mu.Unlock()
 
-			return enc.Encode(data.Wowhead) //nolint:copylocks
+			return enc.Encode(data.Wowhead) //nolint:govet
 		},
 	},
 	{
