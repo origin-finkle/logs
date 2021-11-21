@@ -101,6 +101,10 @@ db = {
         ],
     },
     "MissingItemInSlot": {"str": "missing_item_in_slot", "fields": [Slot]},
+    "MetaNotActivated": {
+        "str": "meta_not_activated",
+        "fields": [ItemWowheadAttr, WowheadAttr],
+    },
 }
 
 all_fields = {}

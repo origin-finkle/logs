@@ -20,4 +20,5 @@ const (
 	Type_InvalidTalentPoints           = "invalid_talent_points"
 	Type_CastHigherRankAvailable       = "cast_higher_rank_available"
 	Type_MissingItemInSlot             = "missing_item_in_slot"
+	Type_MetaNotActivated              = "meta_not_activated"
 )

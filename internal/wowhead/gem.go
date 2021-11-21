@@ -49,5 +49,6 @@ var (
 		"Diamant brûleciel":    "meta",
 		"Draénite dorée":       "yellow",
 		"Tourmaline":           "red",
+		"Topaze noble":         "yellow",
 	}
 )

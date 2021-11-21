@@ -33,6 +33,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 		aura.Events = make([]struct{}, 0)
 		fa.Auras[aura.Ability] = aura
 	}
+	var itemToCheckMetaOn *models.Gear
 	fa.Gear = make([]*models.Gear, 0)
 	for _, gear := range ci.Gear {
 		gear.ComputeWowheadAttr()
@@ -59,12 +60,16 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 				logger.FromContext(ctx).WithError(err).Debugf("could not load gem %d", gem.ID)
 				return err
 			}
+			gem.Color = gemData.Color
 			if gemData.IsRestricted(ctx, fa) {
 				logger.FromContext(ctx).Debugf("gem %s is restricted", gemData.Name)
 				fa.AddRemark(remark.InvalidGem{
 					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
 					WowheadAttr:     fmt.Sprintf("item=%d", gem.ID),
 				})
+			}
+			if gemData.Color == "meta" {
+				itemToCheckMetaOn = gear
 			}
 		}
 		if gear.PermanentEnchant != nil {
@@ -111,6 +116,53 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 				fa.AddRemark(remark.NoTemporaryEnchant{
 					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
 				})
+			}
+		}
+	}
+	if itemToCheckMetaOn != nil {
+		// we know there's a meta, no need to check the array length from .GetGems
+		gemData, err := config.GetGem(itemToCheckMetaOn.GetGems("meta")[0].ID)
+		if err != nil {
+			return err
+		}
+		if gemData.Requires != nil {
+			switch gemData.Requires.Rule {
+			case "count_at_least":
+				count := map[string]int64{}
+				for _, requires := range gemData.Requires.Count {
+					count[requires.Color] = requires.Value
+				}
+				for _, gear := range fa.Gear {
+					for color := range count {
+						count[color] -= gear.CountGems(color)
+						if count[color] <= 0 {
+							delete(count, color)
+						}
+					}
+				}
+				if len(count) > 0 {
+					fa.AddRemark(remark.MetaNotActivated{
+						ItemWowheadAttr: fmt.Sprintf("item=%d", itemToCheckMetaOn.ID),
+						WowheadAttr:     fmt.Sprintf("item=%d", gemData.ID),
+					})
+				}
+			case "more_x_than_y":
+				count := map[string]int64{
+					gemData.Requires.X: 0,
+					gemData.Requires.Y: 0,
+				}
+				for _, gear := range fa.Gear {
+					count[gemData.Requires.X] += gear.CountGems(gemData.Requires.X)
+					count[gemData.Requires.Y] += gear.CountGems(gemData.Requires.Y)
+				}
+				if count[gemData.Requires.X] <= count[gemData.Requires.Y] {
+					fa.AddRemark(remark.MetaNotActivated{
+						ItemWowheadAttr: fmt.Sprintf("item=%d", itemToCheckMetaOn.ID),
+						WowheadAttr:     fmt.Sprintf("item=%d", gemData.ID),
+					})
+				}
+			default:
+				return fmt.Errorf("meta rule %s not handled", gemData.Requires.Rule)
 			}
 		}
 	}

@@ -126,6 +126,7 @@ type GearGem struct {
 	ID        int64  `json:"id"`
 	ItemLevel int64  `json:"itemLevel"`
 	Icon      string `json:"icon"`
+	Color     string `json:"-"`
 }
 
 type Aura struct {

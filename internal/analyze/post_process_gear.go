@@ -78,27 +78,27 @@ func checkGear(ctx context.Context, fa *models.FightAnalysis) error {
 				Slot: "Relique/Armes de jet/À distance",
 			})
 		}
-		if slots["Main gauche"] > 0 || slots["Main droite"] > 0 || slots["Tenu(e) en main gauche"] > 0 || slots["Deux mains"] > 0 || slots["À une main"] > 0 {
-			// so we need to figure out
-			// possible options:
-			// - Main droite + (Main gauche | Tenu(e) en main gauche | À une main)
-			// - À une main + (À une main | Main gauche | Tenu(e) en main gauche)
-			// - Deux mains
-			valid := false
-			if slots["Deux mains"] == 0 {
-				valid = true
-			}
-			if slots["Main droite"] == 0 && ((slots["Main gauche"] > 0 || slots["Tenu(e) en main gauche"] > 0) || slots["À une main"] > 1) {
-				valid = true
-			}
-			if slots["À une main"] <= 1 && (slots["Main gauche"] > 0 || slots["Tenu(e) en main gauche"] > 0) {
-				valid = true
-			}
-			if !valid {
-				fa.AddRemark(remark.MissingItemInSlot{
-					Slot: "Armes",
-				})
-			}
+	}
+	if slots["Main gauche"] > 0 || slots["Main droite"] > 0 || slots["Tenu(e) en main gauche"] > 0 || slots["Deux mains"] > 0 || slots["À une main"] > 0 {
+		// so we need to figure out
+		// possible options:
+		// - Main droite + (Main gauche | Tenu(e) en main gauche | À une main)
+		// - À une main + (À une main | Main gauche | Tenu(e) en main gauche)
+		// - Deux mains
+		valid := false
+		if slots["Deux mains"] == 0 {
+			valid = true
+		}
+		if slots["Main droite"] == 0 && ((slots["Main gauche"] > 0 || slots["Tenu(e) en main gauche"] > 0) || slots["À une main"] > 1) {
+			valid = true
+		}
+		if slots["À une main"] <= 1 && (slots["Main gauche"] > 0 || slots["Tenu(e) en main gauche"] > 0) {
+			valid = true
+		}
+		if !valid {
+			fa.AddRemark(remark.MissingItemInSlot{
+				Slot: "Armes",
+			})
 		}
 	}
 	return nil

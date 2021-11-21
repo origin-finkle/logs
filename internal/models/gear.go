@@ -9,15 +9,15 @@ import (
 )
 
 type Gear struct {
-	ID               int64     `json:"id"`
-	Quality          int64     `json:"quality"`
-	Icon             string    `json:"icon"`
-	ItemLevel        int64     `json:"itemLevel"`
-	PermanentEnchant *int64    `json:"permanentEnchant,omitempty"`
-	TemporaryEnchant *int64    `json:"temporaryEnchant,omitempty"`
-	Gems             []GearGem `json:"gems,omitempty"`
-	WowheadAttr      string    `json:"wowhead_attr"`
-	UUID             string    `json:"uuid"`
+	ID               int64      `json:"id"`
+	Quality          int64      `json:"quality"`
+	Icon             string     `json:"icon"`
+	ItemLevel        int64      `json:"itemLevel"`
+	PermanentEnchant *int64     `json:"permanentEnchant,omitempty"`
+	TemporaryEnchant *int64     `json:"temporaryEnchant,omitempty"`
+	Gems             []*GearGem `json:"gems,omitempty"`
+	WowheadAttr      string     `json:"wowhead_attr"`
+	UUID             string     `json:"uuid"`
 
 	WowheadData *wowhead.Item `json:"-"`
 }
@@ -79,4 +79,37 @@ func (g *Gear) ComputeWowheadAttr() {
 		v.Add("ench", strconv.FormatInt(*g.PermanentEnchant, 10))
 	}
 	g.WowheadAttr = v.Encode()
+}
+
+func (g Gear) CountGems(color string) int64 {
+	count := int64(0)
+	for _, gem := range g.Gems {
+		for _, gemColor := range gemColorToRealColors[gem.Color] {
+			if gemColor == color {
+				count++
+			}
+		}
+	}
+	return count
+}
+
+var (
+	gemColorToRealColors = map[string][]string{
+		"purple": {"red", "blue"},
+		"red":    {"red"},
+		"blue":   {"blue"},
+		"yellow": {"yellow"},
+		"green":  {"blue", "yellow"},
+		"orange": {"red", "yellow"},
+	}
+)
+
+func (g Gear) GetGems(color string) []*GearGem {
+	result := make([]*GearGem, 0)
+	for _, gem := range g.Gems {
+		if gem.Color == color {
+			result = append(result, gem)
+		}
+	}
+	return result
 }
