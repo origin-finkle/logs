@@ -1,0 +1,312 @@
+{
+    "timestamp": 408871,
+    "type": "combatantinfo",
+    "sourceID": 27,
+    "gear": [
+        {
+            "id": 29035,
+            "quality": 4,
+            "icon": "inv_helmet_15.jpg",
+            "itemLevel": 120,
+            "permanentEnchant": 3002,
+            "gems": [
+                {
+                    "id": 34220,
+                    "itemLevel": 70,
+                    "icon": "inv_misc_gem_diamond_07.jpg"
+                },
+                {
+                    "id": 24059,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_nobletopaz_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 28762,
+            "quality": 4,
+            "icon": "inv_jewelry_necklace_29naxxramas.jpg",
+            "itemLevel": 125
+        },
+        {
+            "id": 29037,
+            "quality": 4,
+            "icon": "inv_shoulder_14.jpg",
+            "itemLevel": 120,
+            "permanentEnchant": 2982,
+            "gems": [
+                {
+                    "id": 24059,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_nobletopaz_03.jpg"
+                },
+                {
+                    "id": 24059,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_nobletopaz_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 23345,
+            "quality": 2,
+            "icon": "inv_shirt_14.jpg",
+            "itemLevel": 1
+        },
+        {
+            "id": 30056,
+            "quality": 4,
+            "icon": "inv_chest_cloth_43.jpg",
+            "itemLevel": 128,
+            "permanentEnchant": 2661,
+            "gems": [
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 28654,
+            "quality": 4,
+            "icon": "inv_belt_03.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 24262,
+            "quality": 4,
+            "icon": "inv_pants_cloth_14.jpg",
+            "itemLevel": 105,
+            "permanentEnchant": 2748,
+            "gems": [
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 28517,
+            "quality": 4,
+            "icon": "inv_boots_cloth_05.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2940,
+            "gems": [
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 29523,
+            "quality": 4,
+            "icon": "inv_bracer_07.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2650,
+            "gems": [
+                {
+                    "id": 24059,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_nobletopaz_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 28507,
+            "quality": 4,
+            "icon": "inv_gauntlets_17.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2937,
+            "gems": [
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                },
+                {
+                    "id": 24030,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_livingruby_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 30667,
+            "quality": 4,
+            "icon": "inv_jewelry_ring_51naxxramas.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2928
+        },
+        {
+            "id": 29287,
+            "quality": 4,
+            "icon": "inv_jewelry_ring_62.jpg",
+            "itemLevel": 130,
+            "permanentEnchant": 2928
+        },
+        {
+            "id": 38290,
+            "quality": 4,
+            "icon": "inv_misc_pipe_01.jpg",
+            "itemLevel": 110
+        },
+        {
+            "id": 28785,
+            "quality": 4,
+            "icon": "inv_trinket_naxxramas06.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 27981,
+            "quality": 3,
+            "icon": "inv_misc_cape_11.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2662
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        },
+        {
+            "id": 28248,
+            "quality": 1,
+            "icon": "spell_arcane_blast.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        }
+    ],
+    "auras": [
+        {
+            "source": 14,
+            "ability": 27127,
+            "stacks": 1,
+            "icon": "spell_holy_arcaneintellect.jpg",
+            "name": "Arcane Brilliance"
+        },
+        {
+            "source": 27,
+            "ability": 33265,
+            "stacks": 1,
+            "icon": "spell_misc_food.jpg",
+            "name": "Well Fed"
+        },
+        {
+            "source": 19,
+            "ability": 27143,
+            "stacks": 1,
+            "icon": "spell_holy_greaterblessingofwisdom.jpg",
+            "name": "Greater Blessing of Wisdom"
+        },
+        {
+            "source": 27,
+            "ability": 33721,
+            "stacks": 1,
+            "icon": "inv_alchemy_potion_05.jpg",
+            "name": "Spellpower Elixir"
+        },
+        {
+            "source": 27,
+            "ability": 28509,
+            "stacks": 1,
+            "icon": "inv_potion_151.jpg"
+        },
+        {
+            "source": 6,
+            "ability": 25898,
+            "stacks": 1,
+            "icon": "spell_magic_greaterblessingofkings.jpg",
+            "name": "Greater Blessing of Kings"
+        },
+        {
+            "source": 7,
+            "ability": 25895,
+            "stacks": 1,
+            "icon": "spell_holy_greaterblessingofsalvation.jpg",
+            "name": "Greater Blessing of Salvation"
+        }
+    ],
+    "expansion": "tbc",
+    "faction": 1,
+    "specID": 0,
+    "strength": 139,
+    "agility": 93,
+    "stamina": 607,
+    "intellect": 484,
+    "spirit": 168,
+    "dodge": 0,
+    "parry": 0,
+    "block": 0,
+    "armor": 3058,
+    "critMelee": 0,
+    "critRanged": 0,
+    "critSpell": 265,
+    "hasteMelee": 0,
+    "hasteRanged": 0,
+    "hasteSpell": 0,
+    "hitMelee": 0,
+    "hitRanged": 0,
+    "hitSpell": 62,
+    "expertise": 0,
+    "resilienceCritTaken": 0,
+    "resilienceDamageTaken": 0,
+    "talents": [
+        {
+            "id": 41,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 0,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 20,
+            "icon": "inv_axe_02.jpg"
+        }
+    ],
+    "pvpTalents": [],
+    "customPowerSet": [],
+    "secondaryCustomPowerSet": [],
+    "tertiaryCustomPowerSet": []
+}

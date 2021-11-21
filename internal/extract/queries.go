@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/hasura/go-graphql-client"
-	"github.com/origin-finkle/logs/internal/extract/models"
+	"github.com/origin-finkle/logs/internal/models"
 )
 
 type GetReport struct {

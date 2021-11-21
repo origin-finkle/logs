@@ -11,7 +11,7 @@ import (
 
 	"github.com/alecthomas/kong"
 	"github.com/hasura/go-graphql-client"
-	"github.com/origin-finkle/logs/internal/extract/models"
+	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wcl"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"

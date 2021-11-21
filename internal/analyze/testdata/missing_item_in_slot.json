@@ -1,0 +1,219 @@
+{
+    "timestamp": 580907,
+    "type": "combatantinfo",
+    "sourceID": 10,
+    "gear": [
+        {
+            "id": 22490,
+            "quality": 4,
+            "icon": "inv_helmet_15.jpg",
+            "itemLevel": 88,
+            "permanentEnchant": 2591
+        },
+        {
+            "id": 21712,
+            "quality": 4,
+            "icon": "inv_jewelry_necklace_ahnqiraj_02.jpg",
+            "itemLevel": 88
+        },
+        {
+            "id": 22491,
+            "quality": 4,
+            "icon": "inv_shoulder_14.jpg",
+            "itemLevel": 86,
+            "permanentEnchant": 2604
+        },
+        {
+            "id": 2576,
+            "quality": 2,
+            "icon": "inv_shirt_white_01.jpg",
+            "itemLevel": 7
+        },
+        {
+            "id": 22488,
+            "quality": 4,
+            "icon": "inv_chest_chain_15.jpg",
+            "itemLevel": 92
+        },
+        {
+            "id": 22494,
+            "quality": 4,
+            "icon": "inv_belt_22.jpg",
+            "itemLevel": 88
+        },
+        {
+            "id": 22489,
+            "quality": 4,
+            "icon": "inv_pants_mail_15.jpg",
+            "itemLevel": 88
+        },
+        {
+            "id": 22492,
+            "quality": 4,
+            "icon": "inv_boots_chain_05.jpg",
+            "itemLevel": 86,
+            "permanentEnchant": 911
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        },
+        {
+            "id": 22493,
+            "quality": 4,
+            "icon": "inv_gauntlets_25.jpg",
+            "itemLevel": 88,
+            "permanentEnchant": 2617
+        },
+        {
+            "id": 22939,
+            "quality": 4,
+            "icon": "inv_jewelry_ring_50naxxramas.jpg",
+            "itemLevel": 83
+        },
+        {
+            "id": 21620,
+            "quality": 4,
+            "icon": "inv_jewelry_ring_ahnqiraj_01.jpg",
+            "itemLevel": 78
+        },
+        {
+            "id": 19395,
+            "quality": 4,
+            "icon": "inv_misc_gem_topaz_02.jpg",
+            "itemLevel": 75
+        },
+        {
+            "id": 18470,
+            "quality": 3,
+            "icon": "inv_jewelry_talisman_10.jpg",
+            "itemLevel": 62
+        },
+        {
+            "id": 22960,
+            "quality": 4,
+            "icon": "inv_misc_cape_naxxramas_02.jpg",
+            "itemLevel": 83
+        },
+        {
+            "id": 21839,
+            "quality": 4,
+            "icon": "inv_mace22.jpg",
+            "itemLevel": 84,
+            "permanentEnchant": 2505
+        },
+        {
+            "id": 21666,
+            "quality": 4,
+            "icon": "inv_qirajidol_war.jpg",
+            "itemLevel": 76
+        },
+        {
+            "id": 27886,
+            "quality": 1,
+            "icon": "spell_nature_natureresistancetotem.jpg",
+            "itemLevel": 112
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        }
+    ],
+    "auras": [
+        {
+            "source": 10,
+            "ability": 33268,
+            "stacks": 1,
+            "icon": "spell_misc_food.jpg",
+            "name": "Well Fed"
+        },
+        {
+            "source": 1,
+            "ability": 24932,
+            "stacks": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg",
+            "name": "Leader of the Pack"
+        },
+        {
+            "source": 10,
+            "ability": 39627,
+            "stacks": 1,
+            "icon": "inv_potion_155.jpg",
+            "name": "Elixir of Draenic Wisdom"
+        },
+        {
+            "source": 6,
+            "ability": 21564,
+            "stacks": 1,
+            "icon": "spell_holy_prayeroffortitude.jpg",
+            "name": "Prayer of Fortitude"
+        },
+        {
+            "source": 8,
+            "ability": 25898,
+            "stacks": 1,
+            "icon": "spell_magic_greaterblessingofkings.jpg",
+            "name": "Greater Blessing of Kings"
+        },
+        {
+            "source": 10,
+            "ability": 28491,
+            "stacks": 1,
+            "icon": "inv_potion_142.jpg",
+            "name": "Healing Power"
+        },
+        {
+            "source": 8,
+            "ability": 27149,
+            "stacks": 1,
+            "icon": "spell_holy_devotionaura.jpg",
+            "name": "Devotion Aura"
+        }
+    ],
+    "expansion": "tbc",
+    "faction": 1,
+    "specID": 0,
+    "strength": 100,
+    "agility": 102,
+    "stamina": 410,
+    "intellect": 438,
+    "spirit": 428,
+    "dodge": 0,
+    "parry": 0,
+    "block": 0,
+    "armor": 3132,
+    "critMelee": 0,
+    "critRanged": 0,
+    "critSpell": 0,
+    "hasteMelee": 0,
+    "hasteRanged": 0,
+    "hasteSpell": 0,
+    "hitMelee": 0,
+    "hitRanged": 0,
+    "hitSpell": 0,
+    "expertise": 0,
+    "resilienceCritTaken": 0,
+    "resilienceDamageTaken": 0,
+    "talents": [
+        {
+            "id": 8,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 0,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 53,
+            "icon": "ability_backstab.jpg"
+        }
+    ],
+    "pvpTalents": [],
+    "customPowerSet": [],
+    "secondaryCustomPowerSet": [],
+    "tertiaryCustomPowerSet": []
+}
