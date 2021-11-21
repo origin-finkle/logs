@@ -5,12 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
 	"sync"
 	"time"
 
 	"github.com/alecthomas/kong"
 	"github.com/hasura/go-graphql-client"
+	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wcl"
 	"github.com/sirupsen/logrus"
@@ -21,12 +23,18 @@ func filenameForReportCode(folder, code string) string {
 	return fmt.Sprintf("%s/%s.json", folder, code)
 }
 
-func Extract(app *kong.Context, reportIDs []string, folder string) {
+type Extract struct {
+	ReportIDs     []string `arg:"" optional:"" name:"report-id" help:"Report ID"`
+	Folder        string   `name:"folder" help:"Folder to store data in" type:"existingdir"`
+	CheckOnRemote bool     `name:"check-on-remote" help:"Instead of checking locally, check on remote"`
+}
+
+func (e *Extract) Extract(app *kong.Context) {
 	ctx := context.Background()
-	if folder == "" {
+	if e.Folder == "" {
 		app.Fatalf("--folder is mandatory")
 	}
-	if len(reportIDs) == 0 {
+	if len(e.ReportIDs) == 0 {
 		end := time.Now()
 		start := end.AddDate(0, 0, -14)
 		var q ListReports
@@ -39,30 +47,28 @@ func Extract(app *kong.Context, reportIDs []string, folder string) {
 			app.Fatalf("error while requesting reports: %s", err)
 		}
 		for _, report := range q.ReportData.Reports.Data {
+			ctx := logger.ContextWithLogger(ctx, logrus.WithField("report_code", report.Code))
 			logrus.Debugf("Checking report %s", report.Code)
-			location := filenameForReportCode(folder, string(report.Code))
-			if _, err := os.Stat(location); err == nil {
-				// file exists, skip
-				logrus.Infof("skipping %s, as it has already been processed", report.Code)
-				continue
+			if e.shouldExtractReport(ctx, string(report.Code)) {
+				e.ReportIDs = append(e.ReportIDs, string(report.Code))
 			}
-			reportIDs = append(reportIDs, string(report.Code))
 		}
 	}
 
 	var wg sync.WaitGroup
-	for _, code := range reportIDs {
+	for _, code := range e.ReportIDs {
 		wg.Add(1)
 		go func(code string) {
+			ctx := logger.ContextWithLogger(ctx, logrus.WithField("report_code", code))
 			defer wg.Done()
-			location := filenameForReportCode(folder, code)
-			logrus.Infof("will write to file %s", location)
+			location := filenameForReportCode(e.Folder, code)
+			logger.FromContext(ctx).Infof("will write to file %s", location)
 			file, err := os.Create(location)
 			if err != nil {
 				app.Fatalf("could not create file %s: %s", location, err)
 			}
 			defer file.Close()
-			if err := doReport(file, code); err != nil {
+			if err := doReport(ctx, file, code); err != nil {
 				app.Fatalf("error while loading report %s: %s", code, err)
 			}
 		}(code)
@@ -71,8 +77,32 @@ func Extract(app *kong.Context, reportIDs []string, folder string) {
 
 }
 
-func doReport(file io.Writer, code string) error {
-	ctx := context.Background()
+func (e *Extract) shouldExtractReport(ctx context.Context, reportCode string) bool {
+	if !e.CheckOnRemote {
+		location := filenameForReportCode(e.Folder, reportCode)
+		if _, err := os.Stat(location); err == nil {
+			// file exists, skip
+			logger.FromContext(ctx).Infof("skipping %s, as it has already been processed", reportCode)
+			return false
+		}
+		return true
+	}
+	url := fmt.Sprintf("https://raw.githubusercontent.com/origin-finkle/wcl-origin/master/raid-data/%s.json", reportCode)
+	req, err := http.NewRequest("HEAD", url, nil)
+	if err != nil {
+		logger.FromContext(ctx).WithError(err).Warn("could not check report existency")
+		return false
+	}
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		logger.FromContext(ctx).WithError(err).Warn("could not check report existency")
+		return false
+	}
+	logger.FromContext(ctx).Debugf("HEAD %s returned %d", url, resp.StatusCode)
+	return resp.StatusCode == 404 // 404 means we don't have the file on remote
+}
+
+func doReport(ctx context.Context, file io.Writer, code string) error {
 	var q GetReport
 	err := wcl.Query(ctx, &q, map[string]interface{}{
 		"code": graphql.String(code),
@@ -91,7 +121,8 @@ func doReport(file io.Writer, code string) error {
 		}
 		f := fight // redefine for closure
 		g.Go(func() error {
-			return doReportEvents(report, f)
+			ctx := logger.ContextWithLogger(ctx, logger.FromContext(ctx).WithField("fight_name", f.InternalName))
+			return doReportEvents(ctx, report, f)
 		})
 	}
 	if err := g.Wait(); err != nil {
@@ -103,19 +134,14 @@ func doReport(file io.Writer, code string) error {
 	return enc.Encode(report)
 }
 
-func doReportEvents(report *models.Report, fight *models.Fight) error {
-	ctx := context.Background()
+func doReportEvents(ctx context.Context, report *models.Report, fight *models.Fight) error {
 	startTime := fight.StartTime
-	log := logrus.WithFields(logrus.Fields{
-		"report": report.Code,
-		"fight":  fight.InternalName,
-	})
 	for {
 		if startTime == 0 {
 			break
 		}
 		var q GetReportEvents
-		log.Infof("fetching events with page %d", startTime)
+		logger.FromContext(ctx).Infof("fetching events with page %d", startTime)
 		data, err := wcl.QueryRaw(ctx, &q, map[string]interface{}{
 			"code":      graphql.String(report.Code),
 			"startTime": graphql.Float(startTime),

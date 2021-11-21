@@ -8,11 +8,7 @@ import (
 )
 
 var CLI struct {
-	Extract struct {
-		ReportIDs []string `arg:"" optional:"" name:"report-id" help:"Report ID"`
-		Folder    string   `name:"folder" help:"Folder to store data in" type:"existingdir"`
-	} `cmd:"" help:"Extract reports. If no report ID is given, will try to extract reports from last 14 days"`
-
+	Extract extract.Extract `cmd:"" help:"Extract reports. If no report ID is given, will try to extract reports from last 14 days"`
 	Analyze analyze.Analyze `cmd:"" help:"Analyze reports. If no report ID is given, will analyze every report"`
 
 	Verbose bool `optional:"" name:"verbose" help:"Activate debug logs"`
@@ -25,7 +21,7 @@ func main() {
 	}
 	switch ctx.Command() {
 	case "extract", "extract <report-id>":
-		extract.Extract(ctx, CLI.Extract.ReportIDs, CLI.Extract.Folder)
+		CLI.Extract.Extract(ctx)
 	case "analyze", "analyze <report-id>":
 		CLI.Analyze.Run(ctx)
 	default:
