@@ -60,6 +60,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 				return err
 			}
 			if gemData.IsRestricted(ctx, fa) {
+				logger.FromContext(ctx).Debugf("gem %s is restricted", gemData.Name)
 				fa.AddRemark(remark.InvalidGem{
 					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
 					WowheadAttr:     fmt.Sprintf("item=%d", gem.ID),
@@ -92,10 +93,12 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 			if enchant, err := config.GetTemporaryEnchant(*gear.TemporaryEnchant); err != nil {
 				logger.FromContext(ctx).WithError(err).Debugf("could not load enchant %d", *gear.TemporaryEnchant)
 				// for now, silently ignore
-				// return err
+				fa.AddRemark(remark.InvalidTemporaryEnchant{
+					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.TemporaryEnchant),
+				})
 			} else if enchant.IsRestricted(ctx, fa) {
 				fa.AddRemark(remark.InvalidTemporaryEnchant{
-					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.TemporaryEnchant),
 				})
 			}
 		} else if gear.ShouldHaveTemporaryEnchant() {

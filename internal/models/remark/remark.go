@@ -8,6 +8,11 @@ func New(metadata Metadata, fightName string) *Remark {
 		Fight: fightName,
 	}
 	metadata.apply(r)
+	r.ComputeUUID()
+	return r
+}
+
+func (r *Remark) ComputeUUID() {
 	uuid := []string{string(r.Type)}
 	if r.WowheadAttr != "" {
 		uuid = append(uuid, r.WowheadAttr)
@@ -25,5 +30,4 @@ func New(metadata Metadata, fightName string) *Remark {
 		uuid = append(uuid, r.Fight)
 	}
 	r.UUID = strings.Join(uuid, ":")
-	return r
 }

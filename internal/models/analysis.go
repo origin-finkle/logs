@@ -88,9 +88,10 @@ func (pa *PlayerAnalysis) AggregateRemarks() {
 	removeDup := func(remarkType remark.Type, uniqKey func(*remark.Remark) interface{}) {
 		uniq := map[interface{}]*remark.Remark{}
 		for _, remark := range remarks[remarkType] {
-			remark.Fight = ""
 			uK := uniqKey(remark)
 			if _, ok := uniq[uK]; !ok {
+				remark.Fight = ""
+				remark.ComputeUUID()
 				uniq[uK] = remark
 			}
 		}

@@ -6,6 +6,7 @@ import (
 	"os"
 	"sync"
 
+	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wowhead"
 )
@@ -21,7 +22,10 @@ func loadGems(folder string) error {
 	}
 	defer file.Close()
 	var gems []*models.Gem
-	if err := json.NewDecoder(file).Decode(&gems); err != nil {
+	dec := json.NewDecoder(file)
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&gems); err != nil {
+		logger.FromContext(context.TODO()).WithError(err).Warn("could not load gems")
 		return err
 	}
 	gemMu.Lock()

@@ -1,10 +1,12 @@
 package config
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
 
+	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 )
 
@@ -16,7 +18,10 @@ func loadEnchants(folder string) error {
 	defer file.Close()
 
 	var m []*models.Enchant
-	if err := json.NewDecoder(file).Decode(&m); err != nil {
+	dec := json.NewDecoder(file)
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&m); err != nil {
+		logger.FromContext(context.TODO()).WithError(err).Warn("could not load enchants")
 		return err
 	}
 	data.Enchants = make(map[int64]*models.Enchant)

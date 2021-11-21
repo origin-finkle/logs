@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/wowhead"
 )
 
@@ -21,7 +22,10 @@ func loadWowhead(folder string) error {
 		return err
 	}
 	defer file.Close()
-	if err := json.NewDecoder(file).Decode(&data.Wowhead); err != nil {
+	dec := json.NewDecoder(file)
+	dec.DisallowUnknownFields()
+	if err := dec.Decode(&data.Wowhead); err != nil {
+		logger.FromContext(context.TODO()).WithError(err).Warn("could not load wowhead data")
 		return err
 	}
 	return nil
