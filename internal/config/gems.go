@@ -2,11 +2,8 @@ package config
 
 import (
 	"context"
-	"encoding/json"
-	"os"
 	"sync"
 
-	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wowhead"
 )
@@ -14,28 +11,6 @@ import (
 var (
 	gemMu sync.RWMutex
 )
-
-func loadGems(folder string) error {
-	file, err := os.Open(folder + "/gems.json")
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-	var gems []*models.Gem
-	dec := json.NewDecoder(file)
-	dec.DisallowUnknownFields()
-	if err := dec.Decode(&gems); err != nil {
-		logger.FromContext(context.TODO()).WithError(err).Warn("could not load gems")
-		return err
-	}
-	gemMu.Lock()
-	data.Gems = make(map[int64]*models.Gem)
-	gemMu.Unlock()
-	for _, gem := range gems {
-		SetGem(gem)
-	}
-	return nil
-}
 
 func GetGem(id int64) (*models.Gem, error) {
 	gemMu.RLock()

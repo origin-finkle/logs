@@ -68,6 +68,9 @@ func (an *Analyze) Run(app *kong.Context) {
 	if err := g.Wait(); err != nil {
 		app.Fatalf("failed to process reports: %s", err)
 	}
+	if err := config.Teardown(an.ConfigFolder); err != nil {
+		app.Fatalf("could not save configuration: %s", err)
+	}
 }
 
 func (an *Analyze) doReport(reportID string) error {

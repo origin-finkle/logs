@@ -13,7 +13,7 @@ type Gem struct {
 	Name     string           `json:"name"`
 	Quality  int64            `json:"quality"`
 	Color    string           `json:"color"`
-	Requires *GemRequirements `json:"requires"`
+	Requires *GemRequirements `json:"requires,omitempty"`
 }
 
 type GemRequirements struct {
