@@ -136,16 +136,20 @@ func doReport(ctx context.Context, file io.Writer, code string) error {
 
 func doReportEvents(ctx context.Context, report *models.Report, fight *models.Fight) error {
 	startTime := fight.StartTime
+	endTime := fight.EndTime
 	for {
 		if startTime == 0 {
 			break
+		}
+		if startTime == fight.EndTime {
+			endTime += 1
 		}
 		var q GetReportEvents
 		logger.FromContext(ctx).Infof("fetching events with page %d", startTime)
 		data, err := wcl.QueryRaw(ctx, &q, map[string]interface{}{
 			"code":      graphql.String(report.Code),
 			"startTime": graphql.Float(startTime),
-			"endTime":   graphql.Float(fight.EndTime),
+			"endTime":   graphql.Float(endTime),
 		})
 		if err != nil {
 			return err
