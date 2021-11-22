@@ -49,7 +49,8 @@ func (e *Extract) Extract(app *kong.Context) {
 		for _, report := range q.ReportData.Reports.Data {
 			ctx := logger.ContextWithLogger(ctx, logrus.WithField("report_code", report.Code))
 			logrus.Debugf("Checking report %s", report.Code)
-			if e.shouldExtractReport(ctx, string(report.Code)) {
+			lastActivityAgo := time.Now().Unix() - int64(report.EndTime/1000)
+			if lastActivityAgo >= int64(30*time.Second) && e.shouldExtractReport(ctx, string(report.Code)) {
 				e.ReportIDs = append(e.ReportIDs, string(report.Code))
 			}
 		}
