@@ -43,7 +43,7 @@ db = {
             Count,
         ],
     },
-    "NoEnchant": {"str": "no_enchant", "fields": [ItemWowheadAttr]},
+    "NoEnchant": {"str": "no_enchant", "fields": [ItemWowheadAttr, Slot]},
     "InvalidEnchant": {
         "str": "invalid_enchant",
         "fields": [

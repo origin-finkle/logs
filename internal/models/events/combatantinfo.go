@@ -115,6 +115,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 		} else if gear.ShouldBeEnchanted() {
 			fa.AddRemark(remark.NoEnchant{
 				ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				Slot:            gear.WowheadData.Slot,
 			})
 		}
 

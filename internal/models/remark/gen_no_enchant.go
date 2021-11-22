@@ -3,10 +3,12 @@ package remark
 
 type NoEnchant struct {
 	ItemWowheadAttr string `json:"item_wowhead_attr"`
+	Slot            string `json:"slot"`
 }
 
 func (NoEnchant) getType() Type   { return Type_NoEnchant }
 func (NoEnchant) is(rt Type) bool { return rt == Type_NoEnchant }
 func (md NoEnchant) apply(r *Remark) {
 	r.ItemWowheadAttr = md.ItemWowheadAttr
+	r.Slot = md.Slot
 }
