@@ -320,6 +320,11 @@
         "invalid": true
     },
     {
+        "id": 2982,
+        "name": "18 spell + 10 crit Aldor",
+        "restricted_any": ["ProtectionPaladin", "Magic"]
+    },
+    {
         "id": 2672,
         "name": "Ame de givre",
         "restricted_specializations": ["ShadowPriest", "AfflictionWarlock", "DestructionWarlock", "DemonologyWarlock", "FrostMage"]
