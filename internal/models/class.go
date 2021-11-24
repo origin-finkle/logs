@@ -14,3 +14,19 @@ const (
 	Class_Hunter  Class = "Hunter"
 	Class_Unknown Class = "Unknown"
 )
+
+var (
+	isClass = map[string]bool{
+		string(Class_Paladin): true,
+		string(Class_Rogue):   true,
+		string(Class_Warrior): true,
+		string(Class_Shaman):  true,
+		string(Class_Druid):   true,
+		string(Class_Priest):  true,
+		string(Class_Warlock): true,
+		string(Class_Mage):    true,
+		string(Class_Hunter):  true,
+	}
+)
+
+func stringIsClass(c string) bool { return isClass[c] }

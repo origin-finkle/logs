@@ -13,7 +13,7 @@ type CommonConfig struct {
 	RestrictedSpecializations    []string `json:"restricted_specializations,omitempty"`
 	RestrictedSpecializationsNot []string `json:"restricted_specializations_not,omitempty"`
 	RestrictedFights             []string `json:"restricted_fights,omitempty"`
-	RestrictedAny                []string `json:"restricted_any,omitempty"` // TODO:implement
+	RestrictedAny                []string `json:"restricted_any,omitempty"`
 	RestrictedClass              []string `json:"restricted_class,omitempty"`
 
 	Todo string `json:"__todo,omitempty"`
@@ -22,6 +22,23 @@ type CommonConfig struct {
 func (cc CommonConfig) IsRestricted(ctx context.Context, fa *FightAnalysis) bool {
 	if cc.Invalid {
 		return true
+	}
+	if len(cc.RestrictedAny) > 0 {
+		valid := false
+		for _, restricted := range cc.RestrictedAny {
+			switch true {
+			case stringIsClass(restricted):
+				valid = valid || fa.player.SubType == restricted
+			case stringIsRole(restricted):
+				valid = valid || fa.Talents.Spec.IsRole(Role(restricted))
+			case stringIsSpecialization(restricted):
+				valid = valid || fa.Talents.Spec == Specialization(restricted)
+			}
+		}
+		if !valid {
+			logger.FromContext(ctx).Debugf("player is not in %v", cc.RestrictedAny)
+			return true
+		}
 	}
 	if len(cc.RestrictedFights) > 0 {
 		if !in(fa.Name, cc.RestrictedFights) {

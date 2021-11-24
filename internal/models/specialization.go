@@ -35,6 +35,45 @@ const (
 	Specialization_Unknown            Specialization = "Unknown"
 )
 
+var (
+	isSpecialization = map[string]bool{
+		string(Specialization_RetributionPaladin): true,
+		string(Specialization_HolyPaladin):        true,
+		string(Specialization_ProtectionPaladin):  true,
+		string(Specialization_CombatRogue):        true,
+		string(Specialization_AssassinationRogue): true,
+		string(Specialization_SubtletyRogue):      true,
+		string(Specialization_ArmsWarrior):        true,
+		string(Specialization_FuryWarrior):        true,
+		string(Specialization_ProtectionWarrior):  true,
+		string(Specialization_EnhancementShaman):  true,
+		string(Specialization_ElementalShaman):    true,
+		string(Specialization_RestorationShaman):  true,
+		string(Specialization_BalanceDruid):       true,
+		string(Specialization_CatDruid):           true,
+		string(Specialization_BearDruid):          true,
+		string(Specialization_FeralDruid):         true,
+		string(Specialization_RestorationDruid):   true,
+		string(Specialization_DisciplinePriest):   true,
+		string(Specialization_HolyPriest):         true,
+		string(Specialization_ShadowPriest):       true,
+		string(Specialization_AfflictionWarlock):  true,
+		string(Specialization_DemonologyWarlock):  true,
+		string(Specialization_DestructionWarlock): true,
+		string(Specialization_ArcaneMage):         true,
+		string(Specialization_FireMage):           true,
+		string(Specialization_FrostMage):          true,
+		string(Specialization_SurvivalHunter):     true,
+		string(Specialization_MarksmanshipHunter): true,
+		string(Specialization_BeastMasteryHunter): true,
+		string(Specialization_Unknown):            true,
+	}
+)
+
 func (s Specialization) IsRole(role Role) bool {
 	return specs[s].Role[role]
+}
+
+func stringIsSpecialization(s string) bool {
+	return isSpecialization[s]
 }
