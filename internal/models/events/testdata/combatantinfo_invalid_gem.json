@@ -1,0 +1,249 @@
+{
+    "timestamp": 312518,
+    "type": "combatantinfo",
+    "sourceID": 10,
+    "gear": [
+        {
+            "id": 28796,
+            "quality": 4,
+            "icon": "inv_helmet_58.jpg",
+            "itemLevel": 125,
+            "permanentEnchant": 3003
+        },
+        {
+            "id": 28509,
+            "quality": 4,
+            "icon": "inv_jewelry_necklace_22.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 25790,
+            "quality": 3,
+            "icon": "inv_shoulder_13.jpg",
+            "itemLevel": 114
+        },
+        {
+            "id": 0,
+            "quality": 1,
+            "icon": "inv_axe_02.jpg",
+            "itemLevel": 0
+        },
+        {
+            "id": 30258,
+            "quality": 3,
+            "icon": "inv_chest_plate11.jpg",
+            "itemLevel": 109
+        },
+        {
+            "id": 31462,
+            "quality": 3,
+            "icon": "inv_belt_11.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 29022,
+            "quality": 4,
+            "icon": "inv_pants_plate_24.jpg",
+            "itemLevel": 120,
+            "permanentEnchant": 3012
+        },
+        {
+            "id": 28608,
+            "quality": 4,
+            "icon": "inv_boots_plate_04.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 2657,
+            "gems": [
+                {
+                    "id": 23095,
+                    "itemLevel": 60,
+                    "icon": "inv_misc_gem_bloodgem_02.jpg"
+                },
+                {
+                    "id": 24058,
+                    "itemLevel": 70,
+                    "icon": "inv_jewelcrafting_nobletopaz_03.jpg"
+                }
+            ]
+        },
+        {
+            "id": 22936,
+            "quality": 4,
+            "icon": "inv_bracer_17.jpg",
+            "itemLevel": 83,
+            "permanentEnchant": 1885
+        },
+        {
+            "id": 28824,
+            "quality": 4,
+            "icon": "inv_gauntlets_31.jpg",
+            "itemLevel": 125,
+            "permanentEnchant": 684
+        },
+        {
+            "id": 28323,
+            "quality": 3,
+            "icon": "inv_jewelry_ring_16.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 28649,
+            "quality": 4,
+            "icon": "inv_jewelry_ring_47.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 28288,
+            "quality": 3,
+            "icon": "inv_misc_enggizmos_18.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 28579,
+            "quality": 4,
+            "icon": "inv_poison_mindnumbing.jpg",
+            "itemLevel": 115
+        },
+        {
+            "id": 28672,
+            "quality": 4,
+            "icon": "inv_misc_cape_10.jpg",
+            "itemLevel": 115,
+            "permanentEnchant": 368
+        },
+        {
+            "id": 28437,
+            "quality": 4,
+            "icon": "inv_mace_37.jpg",
+            "itemLevel": 107,
+            "temporaryEnchant": 2955
+        },
+        {
+            "id": 22808,
+            "quality": 4,
+            "icon": "inv_mace_1h_stratholme_d_01.jpg",
+            "itemLevel": 83,
+            "permanentEnchant": 1900,
+            "temporaryEnchant": 2955
+        },
+        {
+            "id": 30279,
+            "quality": 2,
+            "icon": "inv_weapon_rifle_06.jpg",
+            "itemLevel": 111
+        },
+        {
+            "id": 22999,
+            "quality": 2,
+            "icon": "inv_shirt_guildtabard_01.jpg",
+            "itemLevel": 60
+        }
+    ],
+    "auras": [
+        {
+            "source": 10,
+            "ability": 39625,
+            "stacks": 1,
+            "icon": "inv_potion_158.jpg",
+            "name": "Elixir of Major Fortitude"
+        },
+        {
+            "source": 10,
+            "ability": 469,
+            "stacks": 1,
+            "icon": "ability_warrior_rallyingcry.jpg",
+            "name": "Commanding Shout"
+        },
+        {
+            "source": 10,
+            "ability": 33256,
+            "stacks": 1,
+            "icon": "spell_misc_food.jpg",
+            "name": "Well Fed"
+        },
+        {
+            "source": 11,
+            "ability": 25895,
+            "stacks": 1,
+            "icon": "spell_holy_greaterblessingofsalvation.jpg",
+            "name": "Greater Blessing of Salvation"
+        },
+        {
+            "source": 4,
+            "ability": 27127,
+            "stacks": 1,
+            "icon": "spell_holy_arcaneintellect.jpg",
+            "name": "Arcane Brilliance"
+        },
+        {
+            "source": 10,
+            "ability": 28497,
+            "stacks": 1,
+            "icon": "inv_potion_162.jpg",
+            "name": "Mighty Agility"
+        },
+        {
+            "source": 5,
+            "ability": 27149,
+            "stacks": 1,
+            "icon": "spell_holy_devotionaura.jpg",
+            "name": "Devotion Aura"
+        },
+        {
+            "source": 20,
+            "ability": 32999,
+            "stacks": 1,
+            "icon": "spell_holy_prayerofspirit.jpg",
+            "name": "Prayer of Spirit"
+        },
+        {
+            "source": 5,
+            "ability": 25898,
+            "stacks": 1,
+            "icon": "spell_magic_greaterblessingofkings.jpg",
+            "name": "Greater Blessing of Kings"
+        }
+    ],
+    "expansion": "tbc",
+    "faction": 1,
+    "specID": 0,
+    "strength": 438,
+    "agility": 321,
+    "stamina": 599,
+    "intellect": 124,
+    "spirit": 168,
+    "dodge": 0,
+    "parry": 0,
+    "block": 0,
+    "armor": 7836,
+    "critMelee": 266,
+    "critRanged": 266,
+    "critSpell": 0,
+    "hasteMelee": 0,
+    "hasteRanged": 0,
+    "hasteSpell": 0,
+    "hitMelee": 205,
+    "hitRanged": 205,
+    "hitSpell": 0,
+    "expertise": 0,
+    "resilienceCritTaken": 0,
+    "resilienceDamageTaken": 0,
+    "talents": [
+        {
+            "id": 21,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 40,
+            "icon": "inv_axe_02.jpg"
+        },
+        {
+            "id": 0,
+            "icon": "inv_axe_02.jpg"
+        }
+    ],
+    "pvpTalents": [],
+    "customPowerSet": [],
+    "secondaryCustomPowerSet": [],
+    "tertiaryCustomPowerSet": []
+}

@@ -51,7 +51,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 		gear.WowheadData = wowheadData
 		if count := gear.CountMissingGems(); count > 0 {
 			fa.AddRemark(remark.MissingGems{
-				ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				ItemWowheadAttr: gear.WowheadAttr,
 				Count:           int(wowheadData.Sockets) - len(gear.Gems),
 			})
 		}
@@ -66,7 +66,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 			if gemData.IsRestricted(ctx, fa) {
 				logger.FromContext(ctx).Debugf("gem %s is restricted", gemData.Name)
 				fa.AddRemark(remark.InvalidGem{
-					ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+					ItemWowheadAttr: gear.WowheadAttr,
 					WowheadAttr:     fmt.Sprintf("item=%d", gem.ID),
 				})
 			}
@@ -87,7 +87,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 						}
 						if !valid {
 							fa.AddRemark(remark.MetaNotActivated{
-								ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+								ItemWowheadAttr: gear.WowheadAttr,
 								WowheadAttr:     fmt.Sprintf("item=%d", gemData.ID),
 							})
 						}
@@ -101,20 +101,20 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 				logger.FromContext(ctx).WithError(err).Debugf("could not load enchant %d", *gear.PermanentEnchant)
 				// for now, silently ignore
 				fa.AddRemark(remark.InvalidEnchant{
-					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.PermanentEnchant),
+					ItemWowheadAttr: gear.WowheadAttr,
 					Slot:            gear.WowheadData.Slot,
 					EnchantID:       *gear.PermanentEnchant,
 				})
 			} else if enchant.IsRestricted(ctx, fa) {
 				fa.AddRemark(remark.InvalidEnchant{
-					ItemWowheadAttr: fmt.Sprintf("item=%d&ench=%d", gear.ID, *gear.PermanentEnchant),
+					ItemWowheadAttr: gear.WowheadAttr,
 					Slot:            gear.WowheadData.Slot,
 					EnchantID:       *gear.PermanentEnchant,
 				})
 			}
 		} else if gear.ShouldBeEnchanted() {
 			fa.AddRemark(remark.NoEnchant{
-				ItemWowheadAttr: fmt.Sprintf("item=%d", gear.ID),
+				ItemWowheadAttr: gear.WowheadAttr,
 				Slot:            gear.WowheadData.Slot,
 			})
 		}

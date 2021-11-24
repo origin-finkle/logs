@@ -59,3 +59,53 @@ func TestCombatantInfo_NoEnchant(t *testing.T) {
 	}
 	td.CmpTrue(t, found, "found meta_not_activated")
 }
+
+func TestCombatantInfo_MissingGems(t *testing.T) {
+	ev := testutils.LoadJSONData(t, "testdata/combatantinfo_missing_gems.json")
+	analysis := &models.Analysis{
+		Data: make(map[int64]*models.PlayerAnalysis),
+	}
+	analysis.SetPlayerAnalysis(4, &models.PlayerAnalysis{
+		Fights: make(map[string]*models.FightAnalysis),
+	})
+	pa := analysis.GetPlayerAnalysis(4)
+	pa.SetFight(&models.FightAnalysis{Name: "test"})
+	fa := pa.GetFight("test")
+	err := events.Process(context.TODO(), ev, analysis, "test")
+	td.CmpNoError(t, err)
+	found := false
+	td.CmpLen(t, fa.Remarks, td.Gt(0))
+	for _, r := range fa.Remarks {
+		if r.Type == remark.Type_MissingGems {
+			found = true
+			td.Cmp(t, r.ItemWowheadAttr, "domain=fr.tbc&gems=28461&item=28193")
+			break
+		}
+	}
+	td.CmpTrue(t, found, "found missing_gems")
+}
+
+func TestCombatantInfo_InvalidGem(t *testing.T) {
+	ev := testutils.LoadJSONData(t, "testdata/combatantinfo_invalid_gem.json")
+	analysis := &models.Analysis{
+		Data: make(map[int64]*models.PlayerAnalysis),
+	}
+	analysis.SetPlayerAnalysis(10, &models.PlayerAnalysis{
+		Fights: make(map[string]*models.FightAnalysis),
+	})
+	pa := analysis.GetPlayerAnalysis(10)
+	pa.SetFight(&models.FightAnalysis{Name: "test"})
+	fa := pa.GetFight("test")
+	err := events.Process(context.TODO(), ev, analysis, "test")
+	td.CmpNoError(t, err)
+	found := false
+	td.CmpLen(t, fa.Remarks, td.Gt(0))
+	for _, r := range fa.Remarks {
+		if r.Type == remark.Type_InvalidGem {
+			found = true
+			td.Cmp(t, r.ItemWowheadAttr, "domain=fr.tbc&ench=2657&gems=23095%3A24058&item=28608")
+			break
+		}
+	}
+	td.CmpTrue(t, found, "found invalid_gem")
+}
