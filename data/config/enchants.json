@@ -330,6 +330,11 @@
         "restricted_specializations": ["ShadowPriest", "AfflictionWarlock", "DestructionWarlock", "DemonologyWarlock", "FrostMage"]
     },
     {
+        "id": 2939,
+        "name": "Vitesse du félin",
+        "restricted_roles": ["Melee", "Tank"]
+    },
+    {
         "id": 908,
         "name": "50 hp torse",
         "invalid": true
