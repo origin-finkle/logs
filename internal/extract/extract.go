@@ -12,6 +12,7 @@ import (
 
 	"github.com/alecthomas/kong"
 	"github.com/hasura/go-graphql-client"
+	"github.com/origin-finkle/logs/internal/common"
 	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wcl"
@@ -135,7 +136,7 @@ func doReport(ctx context.Context, file io.Writer, code string) error {
 	}
 
 	enc := json.NewEncoder(file)
-	enc.SetIndent(" ", "    ")
+	common.SetupJSONEncoder(enc)
 	return enc.Encode(report)
 }
 

@@ -25,7 +25,7 @@ func SaveLogs(folder string, logs *models.Logs) error {
 	}
 	defer file.Close()
 	enc := json.NewEncoder(file)
-	enc.SetIndent(" ", "    ")
+	SetupJSONEncoder(enc)
 	return enc.Encode(logs)
 }
 
@@ -39,6 +39,6 @@ func SaveAnalysis(folder string, reportCode string, analysis *models.Analysis) e
 	}
 	defer file.Close()
 	enc := json.NewEncoder(file)
-	enc.SetIndent(" ", "    ")
+	SetupJSONEncoder(enc)
 	return enc.Encode(analysis)
 }

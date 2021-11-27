@@ -7,6 +7,7 @@ import (
 	"path"
 	"strconv"
 
+	"github.com/origin-finkle/logs/internal/common"
 	"github.com/origin-finkle/logs/internal/logger"
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/wowhead"
@@ -81,7 +82,7 @@ func (l loader) Teardown(folder string) error {
 	}
 	defer file.Close()
 	enc := json.NewEncoder(file)
-	enc.SetIndent(" ", "    ")
+	common.SetupJSONEncoder(enc)
 	if err := l.Encode(enc); err != nil {
 		logger.FromContext(context.TODO()).WithError(err).Warnf("could not save %s", l.Name)
 		return err
