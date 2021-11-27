@@ -15,7 +15,7 @@ type CommonConfig struct {
 	RestrictedFights             []string            `json:"restricted_fights,omitempty"`
 	RestrictedAny                []string            `json:"restricted_any,omitempty"`
 	RestrictedClass              []string            `json:"restricted_class,omitempty"`
-	RestrictedComplex            *ComplexRestriction `json:"restricted_complex"`
+	RestrictedComplex            *ComplexRestriction `json:"restricted_complex,omitempty"`
 
 	Todo string `json:"__todo,omitempty"`
 }
