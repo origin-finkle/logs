@@ -12,6 +12,7 @@ func TestTalents(t *testing.T) {
 		Talents                   [3]int64
 		ExpectedSpec              Specialization
 		BenefitsFromWindfuryTotem bool
+		ExpectedRoles             []Role
 	}{
 		{
 			SubType:                   "Warlock",
@@ -42,18 +43,21 @@ func TestTalents(t *testing.T) {
 			Talents:                   [3]int64{0, 21, 40},
 			ExpectedSpec:              Specialization_SubtletyRogue,
 			BenefitsFromWindfuryTotem: true,
+			ExpectedRoles:             []Role{Role_Physical, Role_Melee},
 		},
 		{
 			SubType:                   "Rogue",
 			Talents:                   [3]int64{40, 21, 0},
 			ExpectedSpec:              Specialization_AssassinationRogue,
 			BenefitsFromWindfuryTotem: true,
+			ExpectedRoles:             []Role{Role_Physical, Role_Melee},
 		},
 		{
 			SubType:                   "Rogue",
 			Talents:                   [3]int64{21, 40, 0},
 			ExpectedSpec:              Specialization_CombatRogue,
 			BenefitsFromWindfuryTotem: true,
+			ExpectedRoles:             []Role{Role_Physical, Role_Melee},
 		},
 		{
 			SubType:                   "Paladin",
@@ -72,6 +76,9 @@ func TestTalents(t *testing.T) {
 			}, data.Talents)
 			td.Cmp(tt, talents.Spec, data.ExpectedSpec)
 			td.Cmp(tt, talents.BenefitsFromWindfuryTotem(), data.BenefitsFromWindfuryTotem)
+			for _, role := range data.ExpectedRoles {
+				td.CmpTrue(tt, talents.Spec.IsRole(role))
+			}
 		})
 	}
 }

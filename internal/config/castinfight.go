@@ -14,6 +14,9 @@ func GetCastInFight(id int64) (*models.CastInFight, error) {
 }
 
 func SetCastInFight(v *models.CastInFight) {
+	if data.CastInFight[v.SpellID] != nil {
+		panic(fmt.Errorf("CastInFight %d is already stored in cache", v.SpellID))
+	}
 	data.CastInFight[v.SpellID] = v
 }
 

@@ -106,6 +106,7 @@ func (ci *CombatantInfo) Process(ctx context.Context, analysis *models.Analysis,
 					EnchantID:       *gear.PermanentEnchant,
 				})
 			} else if enchant.IsRestricted(ctx, fa) {
+				logger.FromContext(ctx).Debugf("enchant %d is not valid for player", *gear.PermanentEnchant)
 				fa.AddRemark(remark.InvalidEnchant{
 					ItemWowheadAttr: gear.WowheadAttr,
 					Slot:            gear.WowheadData.Slot,

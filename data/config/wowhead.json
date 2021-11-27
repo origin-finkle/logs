@@ -675,6 +675,11 @@
              "slot": "Jambes",
              "sockets": 0
          },
+         "19929": {
+             "name": "Gants teintés de sang",
+             "slot": "Mains",
+             "sockets": 0
+         },
          "19950": {
              "name": "Charme de héros zandalarien",
              "slot": "Bijou",
@@ -728,6 +733,11 @@
          "21186": {
              "name": "Brassards Furie-du-roc",
              "slot": "Poignets",
+             "sockets": 0
+         },
+         "21190": {
+             "name": "Courroux de Cénarius",
+             "slot": "Doigt",
              "sockets": 0
          },
          "21205": {
@@ -793,6 +803,16 @@
          "21344": {
              "name": "Bottes de l'énigme",
              "slot": "Pieds",
+             "sockets": 0
+         },
+         "21345": {
+             "name": "Protège-épaules de l'énigme",
+             "slot": "Épaule",
+             "sockets": 0
+         },
+         "21347": {
+             "name": "Diadème de l'énigme",
+             "slot": "Tête",
              "sockets": 0
          },
          "21354": {
@@ -1440,6 +1460,11 @@
              "slot": "Mains",
              "sockets": 0
          },
+         "22502": {
+             "name": "Ceinture de givrefeu",
+             "slot": "Taille",
+             "sockets": 0
+         },
          "22503": {
              "name": "Manchettes de givrefeu",
              "slot": "Poignets",
@@ -1855,6 +1880,11 @@
              "slot": "Doigt",
              "sockets": 0
          },
+         "23062": {
+             "name": "Anneau de givrefeu",
+             "slot": "Doigt",
+             "sockets": 0
+         },
          "23063": {
              "name": "Anneau de pestecoeur",
              "slot": "Doigt",
@@ -2215,6 +2245,11 @@
              "slot": "Taille",
              "sockets": 2
          },
+         "24396": {
+             "name": "Gilet de vengeance",
+             "slot": "Torse",
+             "sockets": 3
+         },
          "24413": {
              "name": "Totem du tête-tonnerre",
              "slot": "Relique",
@@ -2445,9 +2480,19 @@
              "slot": "Taille",
              "sockets": 0
          },
+         "24777": {
+             "name": "Calot arrache-les-os",
+             "slot": "Tête",
+             "sockets": 0
+         },
          "24781": {
              "name": "Ceinture bourbesang",
              "slot": "Taille",
+             "sockets": 0
+         },
+         "24783": {
+             "name": "Bottes bourbesang",
+             "slot": "Pieds",
              "sockets": 0
          },
          "24785": {
@@ -2655,6 +2700,11 @@
              "slot": "Dos",
              "sockets": 0
          },
+         "25524": {
+             "name": "Bottes de l'Expédition cénarienne",
+             "slot": "Pieds",
+             "sockets": 0
+         },
          "25525": {
              "name": "Epaulettes de Zangar",
              "slot": "Épaule",
@@ -2672,6 +2722,11 @@
          },
          "25562": {
              "name": "Marque d'anéantissement terrestre",
+             "slot": "Cou",
+             "sockets": 0
+         },
+         "25563": {
+             "name": "Marque de puissance terrestre",
              "slot": "Cou",
              "sockets": 0
          },
@@ -3030,6 +3085,11 @@
              "slot": "Dos",
              "sockets": 0
          },
+         "25928": {
+             "name": "Pendentif de guérison éthérien",
+             "slot": "Cou",
+             "sockets": 0
+         },
          "25929": {
              "name": "Cuissards du Fourré cénarien",
              "slot": "Jambes",
@@ -3159,6 +3219,11 @@
              "name": "Masse d'armes de Comté-du-nord",
              "slot": "Main droite",
              "sockets": 0
+         },
+         "27427": {
+             "name": "Harnais de combat de Durotan",
+             "slot": "Torse",
+             "sockets": 3
          },
          "27430": {
              "name": "Grèves de patience en écailles",
@@ -3409,6 +3474,11 @@
              "name": "Totem de rétablissement spontané",
              "slot": "Relique",
              "sockets": 0
+         },
+         "27545": {
+             "name": "Jambières de Mennu en écailles",
+             "slot": "Jambes",
+             "sockets": 3
          },
          "27546": {
              "name": "Collet de traître",
@@ -4150,6 +4220,11 @@
              "slot": "Jambes",
              "sockets": 0
          },
+         "28129": {
+             "name": "Spallières de gladiateur en peau de dragon",
+             "slot": "Épaule",
+             "sockets": 2
+         },
          "28130": {
              "name": "Tunique de gladiateur en peau de dragon",
              "slot": "Torse",
@@ -4490,6 +4565,11 @@
              "slot": "Tête",
              "sockets": 2
          },
+         "28285": {
+             "name": "Heaume du vertueux",
+             "slot": "Tête",
+             "sockets": 2
+         },
          "28286": {
              "name": "Carabine de précision télescopique",
              "slot": "À distance",
@@ -4532,6 +4612,11 @@
          },
          "28307": {
              "name": "Prestelame de gladiateur",
+             "slot": "Main gauche",
+             "sockets": 0
+         },
+         "28310": {
+             "name": "Coutelas de gladiateur",
              "slot": "Main gauche",
              "sockets": 0
          },
@@ -4827,6 +4912,11 @@
          },
          "28441": {
              "name": "Tonnerre-profond",
+             "slot": "Deux mains",
+             "sockets": 0
+         },
+         "28442": {
+             "name": "Héraut de la tempête",
              "slot": "Deux mains",
              "sockets": 0
          },
@@ -6090,6 +6180,11 @@
              "slot": "Tête",
              "sockets": 2
          },
+         "29082": {
+             "name": "Harnais de traqueur de démons",
+             "slot": "Torse",
+             "sockets": 3
+         },
          "29084": {
              "name": "Garde-épaules de traqueur de démons",
              "slot": "Épaule",
@@ -6955,6 +7050,11 @@
              "slot": "Épaule",
              "sockets": 0
          },
+         "29962": {
+             "name": "Tranchecoeur",
+             "slot": "À une main",
+             "sockets": 0
+         },
          "29966": {
              "name": "Protège-bras de fin",
              "slot": "Poignets",
@@ -7087,6 +7187,11 @@
          },
          "30017": {
              "name": "Pendentif de désordre de Telonicus",
+             "slot": "Cou",
+             "sockets": 0
+         },
+         "30018": {
+             "name": "Revendication du seigneur Sanguinar",
              "slot": "Cou",
              "sockets": 0
          },
@@ -7330,6 +7435,16 @@
              "slot": "Torse",
              "sockets": 3
          },
+         "30102": {
+             "name": "Cuirasse coeur-de-krakken",
+             "slot": "Torse",
+             "sockets": 0
+         },
+         "30103": {
+             "name": "Croc de Vashj",
+             "slot": "À une main",
+             "sockets": 0
+         },
          "30104": {
              "name": "Bottes fouette-cobra",
              "slot": "Pieds",
@@ -7495,6 +7610,11 @@
              "slot": "Mains",
              "sockets": 0
          },
+         "30146": {
+             "name": "Casque de mantemort",
+             "slot": "Tête",
+             "sockets": 2
+         },
          "30148": {
              "name": "Garde-jambes de mantemort",
              "slot": "Jambes",
@@ -7620,6 +7740,16 @@
              "slot": "Torse",
              "sockets": 3
          },
+         "30215": {
+             "name": "Mantelet du corrupteur",
+             "slot": "Épaule",
+             "sockets": 2
+         },
+         "30217": {
+             "name": "Gants de Nordrassil",
+             "slot": "Mains",
+             "sockets": 0
+         },
          "30218": {
              "name": "Epaulières de Technicien Subalterne de Troisième Echelon",
              "slot": "Épaule",
@@ -7634,6 +7764,11 @@
              "name": "Kilt de vie de Nordrassil",
              "slot": "Jambes",
              "sockets": 1
+         },
+         "30221": {
+             "name": "Mantelet de vie de Nordrassil",
+             "slot": "Épaule",
+             "sockets": 2
          },
          "30222": {
              "name": "Pansière de Nordrassil",
@@ -7674,6 +7809,11 @@
              "name": "Mantelet farouche de Nordrassil",
              "slot": "Épaule",
              "sockets": 2
+         },
+         "30231": {
+             "name": "Plastron de Nordrassil",
+             "slot": "Torse",
+             "sockets": 3
          },
          "30232": {
              "name": "Gantelets de Nordrassil",
@@ -7859,6 +7999,11 @@
              "name": "Torsade de ressort dimensionnel",
              "slot": "Bijou",
              "sockets": 0
+         },
+         "30488": {
+             "name": "Heaume du gladiateur impitoyable en plaques",
+             "slot": "Tête",
+             "sockets": 2
          },
          "30489": {
              "name": "Garde-jambes du gladiateur impitoyable en plaques",
@@ -8225,6 +8370,11 @@
              "slot": "Bijou",
              "sockets": 0
          },
+         "31131": {
+             "name": "Echarpe des lames silencieuses",
+             "slot": "Taille",
+             "sockets": 0
+         },
          "31140": {
              "name": "Cape d'entropie",
              "slot": "Dos",
@@ -8383,6 +8533,11 @@
          "31335": {
              "name": "Pantalon de la croissance vivante",
              "slot": "Jambes",
+             "sockets": 0
+         },
+         "31336": {
+             "name": "Lame de sorcellerie",
+             "slot": "Main droite",
              "sockets": 0
          },
          "31342": {
@@ -8795,6 +8950,11 @@
              "slot": "Doigt",
              "sockets": 0
          },
+         "31940": {
+             "name": "Torque de l'Ethereum",
+             "slot": "Cou",
+             "sockets": 0
+         },
          "31942": {
              "name": "Cape de fils de l'Aile de mort",
              "slot": "Dos",
@@ -8865,6 +9025,11 @@
              "slot": "Tabard",
              "sockets": 0
          },
+         "32450": {
+             "name": "Martelet de gladiateur",
+             "slot": "Main droite",
+             "sockets": 0
+         },
          "32451": {
              "name": "Salut du gladiateur",
              "slot": "Main droite",
@@ -8920,6 +9085,11 @@
              "slot": "Cou",
              "sockets": 0
          },
+         "32538": {
+             "name": "Drapé de sorcière du ciel",
+             "slot": "Dos",
+             "sockets": 0
+         },
          "32655": {
              "name": "Brassards en tisse-cristal",
              "slot": "Poignets",
@@ -8928,6 +9098,11 @@
          "32658": {
              "name": "Insigne de ténacité",
              "slot": "Bijou",
+             "sockets": 0
+         },
+         "32662": {
+             "name": "Bâton en quartz enflammé",
+             "slot": "Deux mains",
              "sockets": 0
          },
          "32774": {
@@ -8962,6 +9137,11 @@
          },
          "32811": {
              "name": "Crispins de vétéran en tisse-effroi",
+             "slot": "Poignets",
+             "sockets": 1
+         },
+         "32812": {
+             "name": "Brassards de vétéran en cuir de kodo",
              "slot": "Poignets",
              "sockets": 1
          },
@@ -9133,6 +9313,11 @@
          "35358": {
              "name": "Garde-jambes en peau de dragon",
              "slot": "Jambes",
+             "sockets": 0
+         },
+         "35361": {
+             "name": "Gants en cuir de kodo",
+             "slot": "Mains",
              "sockets": 0
          },
          "35362": {

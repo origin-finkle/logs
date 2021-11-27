@@ -7,6 +7,9 @@ import (
 )
 
 func SetConsumable(consumable *models.Consumable) {
+	if data.Consumables[consumable.ID] != nil {
+		panic(fmt.Errorf("consumable %d is already stored in cache", consumable.ID))
+	}
 	data.Consumables[consumable.ID] = consumable
 }
 

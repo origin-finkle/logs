@@ -70,11 +70,6 @@
         "restricted_roles": ["Physical"]
     },
     {
-        "id": 2564,
-        "name": "15 agi arme",
-        "restricted_class": ["Hunter"]
-    },
-    {
         "id": 2657,
         "name": "12 agi bottes",
         "restricted_roles": ["Physical"]
@@ -112,7 +107,7 @@
     {
         "id": 1891,
         "name": "4 carac brassards",
-        "invalid": true
+        "restricted_specializations": ["FeralDruid"]
     },
     {
         "id": 2928,
@@ -122,7 +117,7 @@
     {
         "id": 2938,
         "name": "20 spell pen cape",
-        "invalid": true
+        "restricted_class": ["Warlock"]
     },
     {
         "id": 2650,
@@ -156,7 +151,7 @@
     {
         "id": 684,
         "name": "15 force gants",
-        "restricted_specializations": ["EnhancementShaman", "ArmsWarrior", "FuryWarrior"]
+        "restricted_specializations": ["EnhancementShaman", "ArmsWarrior", "FuryWarrior", "RetributionPaladin"]
     },
     {
         "id": 1885,
@@ -302,7 +297,7 @@
     {
         "id": 2929,
         "name": "2 weapon damage ring",
-        "restricted_class": ["Rogue"]
+        "restricted_class": ["Melee"]
     },
     {
         "id": 1900,

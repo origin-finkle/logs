@@ -7,6 +7,9 @@ import (
 )
 
 func SetTemporaryEnchant(enchant *models.TemporaryEnchant) {
+	if data.TemporaryEnchants[enchant.ID] != nil {
+		panic(fmt.Errorf("TemporaryEnchant %d is already stored in cache", enchant.ID))
+	}
 	data.TemporaryEnchants[enchant.ID] = enchant
 }
 

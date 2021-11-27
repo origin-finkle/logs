@@ -49,7 +49,9 @@ func (cc CommonConfig) IsRestricted(ctx context.Context, fa *FightAnalysis) bool
 	if len(cc.RestrictedRoles) > 0 {
 		restricted := true
 		for _, role := range cc.RestrictedRoles {
+			logger.FromContext(ctx).Debugf("checking if player is %s", role)
 			if fa.Talents.Spec.IsRole(Role(role)) {
+				logger.FromContext(ctx).Debugf("player is %s", role)
 				restricted = false
 				break
 			}

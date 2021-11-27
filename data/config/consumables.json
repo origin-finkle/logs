@@ -41,13 +41,6 @@
         "restricted_any": ["Heal", "ArcaneMage"]
     },
     {
-        "id": 33263,
-        "name": "Bien nourri",
-        "types": ["food"],
-        "description": "Dégâts des sorts augmentés de 23 et Esprit augmenté de 20.",
-        "restricted_roles": ["Magic"]
-    },
-    {
         "id": 28502,
         "name": "Armure majeure",
         "types": ["guardian_elixir"],
