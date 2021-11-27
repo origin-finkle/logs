@@ -117,7 +117,7 @@
     {
         "id": 2938,
         "name": "20 spell pen cape",
-        "restricted_class": ["Warlock"]
+        "restricted_any": ["Warlock", "ArcaneMage"]
     },
     {
         "id": 2650,
