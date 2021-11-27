@@ -7,14 +7,15 @@ import (
 )
 
 type CommonConfig struct {
-	Invalid                      bool     `json:"invalid,omitempty"`
-	InvalidReason                string   `json:"invalid_reason,omitempty"`
-	RestrictedRoles              []string `json:"restricted_roles,omitempty"`
-	RestrictedSpecializations    []string `json:"restricted_specializations,omitempty"`
-	RestrictedSpecializationsNot []string `json:"restricted_specializations_not,omitempty"`
-	RestrictedFights             []string `json:"restricted_fights,omitempty"`
-	RestrictedAny                []string `json:"restricted_any,omitempty"`
-	RestrictedClass              []string `json:"restricted_class,omitempty"`
+	Invalid                      bool                `json:"invalid,omitempty"`
+	InvalidReason                string              `json:"invalid_reason,omitempty"`
+	RestrictedRoles              []string            `json:"restricted_roles,omitempty"`
+	RestrictedSpecializations    []string            `json:"restricted_specializations,omitempty"`
+	RestrictedSpecializationsNot []string            `json:"restricted_specializations_not,omitempty"`
+	RestrictedFights             []string            `json:"restricted_fights,omitempty"`
+	RestrictedAny                []string            `json:"restricted_any,omitempty"`
+	RestrictedClass              []string            `json:"restricted_class,omitempty"`
+	RestrictedComplex            *ComplexRestriction `json:"restricted_complex"`
 
 	Todo string `json:"__todo,omitempty"`
 }
@@ -22,6 +23,9 @@ type CommonConfig struct {
 func (cc CommonConfig) IsRestricted(ctx context.Context, fa *FightAnalysis) bool {
 	if cc.Invalid {
 		return true
+	}
+	if cc.RestrictedComplex != nil {
+		return cc.RestrictedComplex.IsRestricted(ctx, fa)
 	}
 	if len(cc.RestrictedAny) > 0 {
 		valid := false
@@ -87,6 +91,27 @@ func in(s string, ss []string) bool {
 		if v == s {
 			return true
 		}
+	}
+	return false
+}
+
+type ComplexRestriction struct {
+	Operator string       `json:"operator"`
+	LHS      CommonConfig `json:"lhs"`
+	RHS      CommonConfig `json:"rhs"`
+}
+
+func (cr *ComplexRestriction) IsRestricted(ctx context.Context, fa *FightAnalysis) bool {
+	switch cr.Operator {
+	case "AND":
+		lhs := cr.LHS.IsRestricted(ctx, fa)
+		rhs := cr.RHS.IsRestricted(ctx, fa)
+		if !lhs && !rhs {
+			return false
+		}
+		return true
+	case "OR":
+		return cr.LHS.IsRestricted(ctx, fa) && cr.RHS.IsRestricted(ctx, fa)
 	}
 	return false
 }

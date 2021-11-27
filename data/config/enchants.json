@@ -8,7 +8,7 @@
     {
         "id": 3002,
         "name": "Glyphe de puissance",
-        "restricted_specializations": ["FireMage", "FrostMage", "ArcaneMage", "BalanceDruid", "ProtectionPaladin", "ShadowPriest", "AfflictionWarlock", "DemonologyWarlock", "DestructionWarlock", "ElementalShaman"]
+        "restricted_any": ["Magic", "ProtectionPaladin"]
     },
     {
         "id": 2621,
@@ -46,7 +46,17 @@
     {
         "id": 2613,
         "name": "2% menace gants",
-        "restricted_roles": ["Tank"]
+        "restricted_roles": ["Tank"],
+        "restricted_complex": {
+            "operator": "OR",
+            "lhs": {
+                "restricted_roles": ["Tank"]
+            },
+            "rhs": {
+                "restricted_class": ["Warlock"],
+                "restricted_fights": ["Leotheras the Blind"]
+            }
+        }
     },
     {
         "id": 2647,
@@ -97,7 +107,23 @@
     {
         "id": 1144,
         "name": "15 esprit torse",
-        "invalid": true
+        "restricted_specializations": ["HolyPriest", "DisciplinePriest"]
+    },
+    {
+        "id": 3006,
+        "name": "20 ra tête",
+        "restricted_fights": ["High Astromancer Solarian"]
+    },
+    {
+        "id": 2620,
+        "name": "20 RN cape",
+        "restricted_fights": ["Hydross the Unstable"]
+    },
+    {
+        "id": 2619,
+        "name": "20 RF cape",
+        "restricted_class": ["Warlock"],
+        "restricted_fights": ["Leotheras the Blind"]
     },
     {
         "id": 2747,
@@ -125,8 +151,18 @@
         "restricted_roles": ["Magic"]
     },
     {
+        "id": 2671,
+        "name": "Feu solaire",
+        "restricted_specializations": ["ArcaneMage", "FireMage", "BalanceDruid"]
+    },
+    {
         "id": 2940,
         "name": "Endu vitesse sur bottes"
+    },
+    {
+        "id": 2656,
+        "name": "Vitalité",
+        "restricted_specializations": ["ArcaneMage"]
     },
     {
         "id": 2669,

@@ -109,3 +109,46 @@ func TestCombatantInfo_InvalidGem(t *testing.T) {
 	}
 	td.CmpTrue(t, found, "found invalid_gem")
 }
+
+func TestCombatantInfo_ComplexRestriction(t *testing.T) {
+	ev := testutils.LoadJSONData(t, "testdata/combatantinfo_warlock_leotheras.json")
+	analysis := &models.Analysis{
+		Data: make(map[int64]*models.PlayerAnalysis),
+	}
+	analysis.SetPlayerAnalysis(26, &models.PlayerAnalysis{
+		Fights: make(map[string]*models.FightAnalysis),
+	})
+	pa := analysis.GetPlayerAnalysis(26)
+	pa.SetFight(&models.FightAnalysis{Name: "Leotheras the Blind"})
+	fa := pa.GetFight("Leotheras the Blind")
+	err := events.Process(context.TODO(), ev, analysis, "Leotheras the Blind")
+	td.CmpNoError(t, err)
+	for _, r := range fa.Remarks {
+		td.CmpNot(t, r.Type, remark.Type_InvalidEnchant, "no invalid_enchant remark found")
+	}
+}
+
+func TestCombatantInfo_ComplexRestrictionShouldTrigger(t *testing.T) {
+	ev := testutils.LoadJSONData(t, "testdata/combatantinfo_warlock_leotheras.json")
+	analysis := &models.Analysis{
+		Data: make(map[int64]*models.PlayerAnalysis),
+	}
+	analysis.SetPlayerAnalysis(26, &models.PlayerAnalysis{
+		Fights: make(map[string]*models.FightAnalysis),
+	})
+	pa := analysis.GetPlayerAnalysis(26)
+	pa.SetFight(&models.FightAnalysis{Name: "should trigger"})
+	fa := pa.GetFight("should trigger")
+	err := events.Process(context.TODO(), ev, analysis, "should trigger")
+	td.CmpNoError(t, err)
+	found := false
+	td.CmpLen(t, fa.Remarks, td.Gt(0))
+	for _, r := range fa.Remarks {
+		if r.Type == remark.Type_InvalidEnchant && r.Slot == "Mains" {
+			found = true
+			td.Cmp(t, r.ItemWowheadAttr, "domain=fr.tbc&ench=2613&item=30764")
+			break
+		}
+	}
+	td.CmpTrue(t, found, "found invalid_enchant")
+}
