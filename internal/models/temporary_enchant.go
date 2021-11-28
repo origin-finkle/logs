@@ -5,5 +5,5 @@ type TemporaryEnchant struct {
 
 	ID          int64  `json:"id"`
 	Description string `json:"description"`
-	SpellID     int64  `json:"spellID"`
+	SpellID     int64  `json:"spellID,omitempty"`
 }

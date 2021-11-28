@@ -100,6 +100,7 @@ var cfg = []loader{
 				return err
 			}
 			for _, gem := range gems {
+				gem.TextRule = gem.CommonConfig.String()
 				SetGem(gem)
 			}
 			return nil
@@ -128,10 +129,14 @@ var cfg = []loader{
 				if err != nil {
 					return err
 				}
+				v.TextRule = v.CommonConfig.String()
 				v.SpellID = id
 				SetCastInFight(v)
 			}
 			return nil
+		},
+		Encode: func(enc *json.Encoder) error {
+			return enc.Encode(data.CastInFight)
 		},
 	},
 	{
@@ -143,9 +148,17 @@ var cfg = []loader{
 				return err
 			}
 			for _, consumable := range m {
+				consumable.TextRule = consumable.CommonConfig.String()
 				SetConsumable(consumable)
 			}
 			return nil
+		},
+		Encode: func(enc *json.Encoder) error {
+			consumables := make([]*models.Consumable, 0, len(data.Consumables))
+			for _, consumable := range data.Consumables {
+				consumables = append(consumables, consumable)
+			}
+			return enc.Encode(consumables)
 		},
 	},
 	{
@@ -170,9 +183,17 @@ var cfg = []loader{
 				return err
 			}
 			for _, enchant := range m {
+				enchant.TextRule = enchant.CommonConfig.String()
 				SetEnchant(enchant)
 			}
 			return nil
+		},
+		Encode: func(enc *json.Encoder) error {
+			enchants := make([]*models.Enchant, 0, len(data.Enchants))
+			for _, enchant := range data.Enchants {
+				enchants = append(enchants, enchant)
+			}
+			return enc.Encode(enchants)
 		},
 	},
 	{
@@ -184,9 +205,17 @@ var cfg = []loader{
 				return err
 			}
 			for _, enchant := range m {
+				enchant.TextRule = enchant.CommonConfig.String()
 				SetTemporaryEnchant(enchant)
 			}
 			return nil
+		},
+		Encode: func(enc *json.Encoder) error {
+			enchants := make([]*models.TemporaryEnchant, 0, len(data.TemporaryEnchants))
+			for _, enchant := range data.TemporaryEnchants {
+				enchants = append(enchants, enchant)
+			}
+			return enc.Encode(enchants)
 		},
 	},
 }

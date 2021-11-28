@@ -12,7 +12,7 @@ type Enchant struct {
 
 	ID      int64  `json:"id"`
 	Name    string `json:"name"`
-	SpellID int64  `json:"spell_id"` // TODO:implement
+	SpellID int64  `json:"spell_id,omitempty"` // TODO:implement
 }
 
 func (e *Enchant) IsRestricted(ctx context.Context, fa *FightAnalysis) bool {

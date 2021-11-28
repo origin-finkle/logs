@@ -7,7 +7,7 @@ type CastInFight struct {
 	Display          bool   `json:"display"`
 	Name             string `json:"name"`
 	Type             string `json:"type"`
-	ItemID           int64  `json:"item_id"`
-	CooldownID       string `json:"cooldown_id"`
-	SuggestedSpellID int64  `json:"suggested_spell_id"`
+	ItemID           int64  `json:"item_id,omitempty"`
+	CooldownID       string `json:"cooldown_id,omitempty"`
+	SuggestedSpellID int64  `json:"suggested_spell_id,omitempty"`
 }

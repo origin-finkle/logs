@@ -6,14 +6,14 @@ type Consumable struct {
 	ID          int64    `json:"id"`
 	Name        string   `json:"name"`
 	Types       []string `json:"types"`
-	Description string   `json:"description"`
+	Description string   `json:"description,omitempty"`
 }
 
-func (c Consumable) IsBattleElixir() bool {
+func (c *Consumable) IsBattleElixir() bool {
 	return c.Is("battle_elixir")
 }
 
-func (c Consumable) Is(consumableType string) bool {
+func (c *Consumable) Is(consumableType string) bool {
 	for _, t := range c.Types {
 		if t == consumableType {
 			return true

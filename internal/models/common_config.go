@@ -2,6 +2,9 @@ package models
 
 import (
 	"context"
+	"fmt"
+	"reflect"
+	"strings"
 
 	"github.com/origin-finkle/logs/internal/logger"
 )
@@ -9,15 +12,61 @@ import (
 type CommonConfig struct {
 	Invalid                      bool                `json:"invalid,omitempty"`
 	InvalidReason                string              `json:"invalid_reason,omitempty"`
-	RestrictedRoles              []string            `json:"restricted_roles,omitempty"`
-	RestrictedSpecializations    []string            `json:"restricted_specializations,omitempty"`
-	RestrictedSpecializationsNot []string            `json:"restricted_specializations_not,omitempty"`
-	RestrictedFights             []string            `json:"restricted_fights,omitempty"`
-	RestrictedAny                []string            `json:"restricted_any,omitempty"`
-	RestrictedClass              []string            `json:"restricted_class,omitempty"`
+	RestrictedRoles              []string            `json:"restricted_roles,omitempty" stringer:"PlayerRole"`
+	RestrictedSpecializations    []string            `json:"restricted_specializations,omitempty" stringer:"PlayerSpec"`
+	RestrictedSpecializationsNot []string            `json:"restricted_specializations_not,omitempty" stringer:"PlayerSpec,not"`
+	RestrictedFights             []string            `json:"restricted_fights,omitempty" stringer:"Fight"`
+	RestrictedAny                []string            `json:"restricted_any,omitempty" stringer:"Player"`
+	RestrictedClass              []string            `json:"restricted_class,omitempty" stringer:"PlayerClass"`
 	RestrictedComplex            *ComplexRestriction `json:"restricted_complex,omitempty"`
 
-	Todo string `json:"__todo,omitempty"`
+	Todo     string `json:"__todo,omitempty"`
+	TextRule string `json:"text_rule,omitempty"`
+}
+
+func (cc CommonConfig) String() string {
+	if cc.Invalid {
+		return "INVALID"
+	}
+	if cc.RestrictedComplex != nil {
+		return cc.RestrictedComplex.String()
+	}
+	parts := make([]string, 0)
+	t := reflect.TypeOf(cc)
+	v := reflect.ValueOf(cc)
+	for i := 0; i < t.NumField(); i++ {
+		field := t.Field(i)
+		if str := field.Tag.Get("stringer"); str != "" {
+			fieldVal := v.Field(i)
+			if fieldVal.Len() == 0 {
+				continue
+			}
+			ss := strings.Split(str, ",")
+			var equality bool
+			if len(ss) == 2 && ss[1] == "not" {
+				equality = false
+			} else {
+				equality = true
+			}
+			var operator string
+			values := strings.Join(fieldVal.Interface().([]string), ", ")
+			if fieldVal.Len() == 1 {
+				if equality {
+					operator = "="
+				} else {
+					operator = "!="
+				}
+			} else {
+				operator = "IN"
+				if !equality {
+					operator = "NOT " + operator
+				}
+				values = "(" + values + ")"
+			}
+			parts = append(parts, fmt.Sprintf("%s %s %s", ss[0], operator, values))
+		}
+	}
+	return strings.Join(parts, " AND ")
 }
 
 func (cc CommonConfig) IsRestricted(ctx context.Context, fa *FightAnalysis) bool {
@@ -114,4 +163,8 @@ func (cr *ComplexRestriction) IsRestricted(ctx context.Context, fa *FightAnalysi
 		return cr.LHS.IsRestricted(ctx, fa) && cr.RHS.IsRestricted(ctx, fa)
 	}
 	return false
+}
+
+func (cr *ComplexRestriction) String() string {
+	return fmt.Sprintf("(%s) %s (%s)", cr.LHS.String(), cr.Operator, cr.RHS.String())
 }
