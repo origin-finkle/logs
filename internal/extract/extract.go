@@ -50,9 +50,9 @@ func (e *Extract) Extract(app *kong.Context) {
 		for _, report := range q.ReportData.Reports.Data {
 			ctx := logger.ContextWithLogger(ctx, logrus.WithField("report_code", report.Code))
 			logrus.Debugf("Checking report %s", report.Code)
-			lastActivityAgo := time.Now().Unix() - int64(report.EndTime/1000)
-			if lastActivityAgo < 30*60 {
-				logger.FromContext(ctx).Infof("report cannot be processed, finished %d seconds ago", lastActivityAgo)
+			lastActivityAgo := time.Since(time.Unix(int64(report.EndTime/1000), 0))
+			if lastActivityAgo < 30*time.Minute {
+				logger.FromContext(ctx).Infof("report cannot be processed, finished %s ago", lastActivityAgo)
 			}
 			if e.shouldExtractReport(ctx, string(report.Code)) {
 				logger.FromContext(ctx).Infof("will process %s", report.Code)
