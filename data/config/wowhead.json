@@ -375,6 +375,11 @@
 			"slot": "Épaule",
 			"sockets": 0
 		},
+		"18812": {
+			"name": "Garde-poignets de vrai vol",
+			"slot": "Poignets",
+			"sockets": 0
+		},
 		"18813": {
 			"name": "Anneau de lien",
 			"slot": "Doigt",
@@ -2350,6 +2355,11 @@
 			"slot": "Torse",
 			"sockets": 0
 		},
+		"24651": {
+			"name": "Protège-épaules d'Astralaan",
+			"slot": "Épaule",
+			"sockets": 0
+		},
 		"24657": {
 			"name": "Chaperon du Consortium",
 			"slot": "Tête",
@@ -2368,6 +2378,11 @@
 		"24661": {
 			"name": "Chaîne du Conseil des ombres",
 			"slot": "Taille",
+			"sockets": 0
+		},
+		"24663": {
+			"name": "Tunique du Conseil des ombres",
+			"slot": "Torse",
 			"sockets": 0
 		},
 		"24665": {
@@ -2440,6 +2455,16 @@
 			"slot": "Épaule",
 			"sockets": 0
 		},
+		"24686": {
+			"name": "Bottes d'élémentaliste",
+			"slot": "Pieds",
+			"sockets": 0
+		},
+		"24688": {
+			"name": "Gants d'élémentaliste",
+			"slot": "Mains",
+			"sockets": 0
+		},
 		"24689": {
 			"name": "Calot d'élémentaliste",
 			"slot": "Tête",
@@ -2458,6 +2483,11 @@
 		"24739": {
 			"name": "Garde-épaules roche-soleil",
 			"slot": "Épaule",
+			"sockets": 0
+		},
+		"24745": {
+			"name": "Chapeau de forestier",
+			"slot": "Tête",
 			"sockets": 0
 		},
 		"24759": {
@@ -2545,6 +2575,11 @@
 			"slot": "Poignets",
 			"sockets": 0
 		},
+		"24798": {
+			"name": "Ceinture du faucon-dragon",
+			"slot": "Taille",
+			"sockets": 0
+		},
 		"24799": {
 			"name": "Bottes du faucon-dragon",
 			"slot": "Pieds",
@@ -2553,6 +2588,11 @@
 		"24804": {
 			"name": "Garde-épaules du faucon-dragon",
 			"slot": "Épaule",
+			"sockets": 0
+		},
+		"24805": {
+			"name": "Poignets du faucon-dragon",
+			"slot": "Poignets",
 			"sockets": 0
 		},
 		"24878": {
@@ -7395,6 +7435,11 @@
 			"slot": "Deux mains",
 			"sockets": 0
 		},
+		"30091": {
+			"name": "Poignets de la visée précise de traqueur",
+			"slot": "Poignets",
+			"sockets": 1
+		},
 		"30092": {
 			"name": "Bottes en peau d'épaulard",
 			"slot": "Pieds",
@@ -7565,6 +7610,11 @@
 			"slot": "Jambes",
 			"sockets": 1
 		},
+		"30136": {
+			"name": "Grand heaume de Cristalforge",
+			"slot": "Tête",
+			"sockets": 2
+		},
 		"30137": {
 			"name": "Jambières de Cristalforge",
 			"slot": "Jambes",
@@ -7635,6 +7685,11 @@
 			"slot": "Mains",
 			"sockets": 0
 		},
+		"30152": {
+			"name": "Capuche de l'avatar",
+			"slot": "Tête",
+			"sockets": 2
+		},
 		"30153": {
 			"name": "Braies de l'avatar",
 			"slot": "Jambes",
@@ -7649,6 +7704,11 @@
 			"name": "Corselet du cataclysme",
 			"slot": "Torse",
 			"sockets": 3
+		},
+		"30165": {
+			"name": "Gants du cataclysme",
+			"slot": "Mains",
+			"sockets": 0
 		},
 		"30167": {
 			"name": "Garde-jambes du cataclysme",
@@ -7694,6 +7754,11 @@
 			"name": "Cuissards du cataclysme",
 			"slot": "Jambes",
 			"sockets": 1
+		},
+		"30194": {
+			"name": "Plaques d'épaules du cataclysme",
+			"slot": "Épaule",
+			"sockets": 2
 		},
 		"30196": {
 			"name": "Robe de Tirisfal",
@@ -7819,6 +7884,11 @@
 			"name": "Gantelets de Nordrassil",
 			"slot": "Mains",
 			"sockets": 0
+		},
+		"30234": {
+			"name": "Kilt de courroux de Nordrassil",
+			"slot": "Jambes",
+			"sockets": 1
 		},
 		"30235": {
 			"name": "Mantelet de courroux de Nordrassil",
@@ -8065,6 +8135,11 @@
 			"slot": "Bijou",
 			"sockets": 0
 		},
+		"30629": {
+			"name": "Scarabée de déplacement",
+			"slot": "Bijou",
+			"sockets": 0
+		},
 		"30641": {
 			"name": "Bottes d'élusion",
 			"slot": "Pieds",
@@ -8223,6 +8298,11 @@
 		"30925": {
 			"name": "Spallières du Coeur-fendu",
 			"slot": "Épaule",
+			"sockets": 0
+		},
+		"30929": {
+			"name": "Kilt de devin",
+			"slot": "Jambes",
 			"sockets": 0
 		},
 		"30930": {
@@ -8993,6 +9073,11 @@
 		"32078": {
 			"name": "Espauliers de la magie sauvage",
 			"slot": "Épaule",
+			"sockets": 0
+		},
+		"32082": {
+			"name": "La barrière gangrenée",
+			"slot": "Main gauche",
 			"sockets": 0
 		},
 		"32083": {
