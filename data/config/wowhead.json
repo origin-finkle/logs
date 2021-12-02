@@ -4215,6 +4215,11 @@
 			"slot": "Relique",
 			"sockets": 0
 		},
+		"28066": {
+			"name": "Totem foudroyant",
+			"slot": "Relique",
+			"sockets": 0
+		},
 		"28070": {
 			"name": "Protège-mains verdoyants",
 			"slot": "Mains",
@@ -7285,6 +7290,11 @@
 			"slot": "Taille",
 			"sockets": 2
 		},
+		"30034": {
+			"name": "Ceinture du gardien",
+			"slot": "Taille",
+			"sockets": 2
+		},
 		"30035": {
 			"name": "Bottes du long chemin",
 			"slot": "Pieds",
@@ -7725,6 +7735,11 @@
 			"slot": "Torse",
 			"sockets": 3
 		},
+		"30170": {
+			"name": "Manicles du cataclysme",
+			"slot": "Mains",
+			"sockets": 0
+		},
 		"30172": {
 			"name": "Jambières du cataclysme",
 			"slot": "Jambes",
@@ -7809,6 +7824,11 @@
 			"name": "Mantelet du corrupteur",
 			"slot": "Épaule",
 			"sockets": 2
+		},
+		"30216": {
+			"name": "Corselet de Nordrassil",
+			"slot": "Torse",
+			"sockets": 3
 		},
 		"30217": {
 			"name": "Gants de Nordrassil",
@@ -7935,6 +7955,11 @@
 			"slot": "À distance",
 			"sockets": 0
 		},
+		"30285": {
+			"name": "Ceinture d'agent de la B.O.U.M.",
+			"slot": "Taille",
+			"sockets": 0
+		},
 		"30286": {
 			"name": "Espauliers d'un autre monde",
 			"slot": "Épaule",
@@ -7958,6 +7983,16 @@
 		"30300": {
 			"name": "Enigme de Dabiri",
 			"slot": "Bijou",
+			"sockets": 0
+		},
+		"30328": {
+			"name": "Tunique d'assassin du Protectorat",
+			"slot": "Torse",
+			"sockets": 0
+		},
+		"30332": {
+			"name": "Poignets féroces",
+			"slot": "Poignets",
 			"sockets": 0
 		},
 		"30339": {
@@ -9130,6 +9165,11 @@
 			"slot": "Tête",
 			"sockets": 2
 		},
+		"32473": {
+			"name": "Lunettes tankatroniques",
+			"slot": "Tête",
+			"sockets": 2
+		},
 		"32478": {
 			"name": "Lunettes coup-de-grâce X11",
 			"slot": "Tête",
@@ -9260,6 +9300,11 @@
 			"slot": "Main droite",
 			"sockets": 0
 		},
+		"32964": {
+			"name": "Salut du gladiateur impitoyable",
+			"slot": "Main droite",
+			"sockets": 0
+		},
 		"32976": {
 			"name": "Ceinture de maréchal en étoffe lunaire",
 			"slot": "Taille",
@@ -9270,10 +9315,25 @@
 			"slot": "Poignets",
 			"sockets": 1
 		},
+		"32979": {
+			"name": "Ceinture de vétéran en étoffe lunaire",
+			"slot": "Taille",
+			"sockets": 0
+		},
 		"32980": {
 			"name": "Crispins de vétéran en étoffe lunaire",
 			"slot": "Poignets",
 			"sockets": 1
+		},
+		"32981": {
+			"name": "Mules de vétéran en étoffe lunaire",
+			"slot": "Pieds",
+			"sockets": 0
+		},
+		"32999": {
+			"name": "Solerets de vétéran en mailles annelées",
+			"slot": "Pieds",
+			"sockets": 0
 		},
 		"33054": {
 			"name": "Le sceau de Danzalar",
@@ -9375,6 +9435,21 @@
 			"slot": "Tabard",
 			"sockets": 0
 		},
+		"35334": {
+			"name": "Garde-jambes en étoffe lunaire",
+			"slot": "Jambes",
+			"sockets": 0
+		},
+		"35335": {
+			"name": "Mitaines en étoffe lunaire",
+			"slot": "Mains",
+			"sockets": 0
+		},
+		"35336": {
+			"name": "Protège-épaules en étoffe lunaire",
+			"slot": "Épaule",
+			"sockets": 2
+		},
 		"35344": {
 			"name": "Capuche d'évocateur en soie",
 			"slot": "Tête",
@@ -9449,6 +9524,11 @@
 			"name": "Epaulières sauvages en plaques",
 			"slot": "Épaule",
 			"sockets": 2
+		},
+		"35467": {
+			"name": "Habit en étoffe lunaire",
+			"slot": "Torse",
+			"sockets": 3
 		},
 		"35478": {
 			"name": "Heaume sauvage en plaques",

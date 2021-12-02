@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"os"
 	"path"
+	"sort"
 	"strconv"
 
 	"github.com/origin-finkle/logs/internal/common"
@@ -113,6 +114,7 @@ var cfg = []loader{
 			for _, gem := range data.Gems {
 				gems = append(gems, gem)
 			}
+			sort.SliceStable(gems, func(i, j int) bool { return gems[i].ID < gems[j].ID })
 			return enc.Encode(gems)
 		},
 	},
@@ -158,6 +160,7 @@ var cfg = []loader{
 			for _, consumable := range data.Consumables {
 				consumables = append(consumables, consumable)
 			}
+			sort.SliceStable(consumables, func(i, j int) bool { return consumables[i].ID < consumables[j].ID })
 			return enc.Encode(consumables)
 		},
 	},
@@ -193,6 +196,7 @@ var cfg = []loader{
 			for _, enchant := range data.Enchants {
 				enchants = append(enchants, enchant)
 			}
+			sort.SliceStable(enchants, func(i, j int) bool { return enchants[i].ID < enchants[j].ID })
 			return enc.Encode(enchants)
 		},
 	},
@@ -215,6 +219,7 @@ var cfg = []loader{
 			for _, enchant := range data.TemporaryEnchants {
 				enchants = append(enchants, enchant)
 			}
+			sort.SliceStable(enchants, func(i, j int) bool { return enchants[i].ID < enchants[j].ID })
 			return enc.Encode(enchants)
 		},
 	},
