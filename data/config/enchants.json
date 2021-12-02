@@ -20,9 +20,10 @@
 			"EnhancementShaman",
 			"ArmsWarrior",
 			"FuryWarrior",
-			"RetributionPaladin"
+			"RetributionPaladin",
+			"FeralDruid"
 		],
-		"text_rule": "PlayerSpec IN (EnhancementShaman, ArmsWarrior, FuryWarrior, RetributionPaladin)",
+		"text_rule": "PlayerSpec IN (EnhancementShaman, ArmsWarrior, FuryWarrior, RetributionPaladin, FeralDruid)",
 		"id": 684,
 		"name": "15 force gants"
 	},
@@ -402,10 +403,10 @@
 		"name": "12 spell ring"
 	},
 	{
-		"restricted_class": [
+		"restricted_roles": [
 			"Melee"
 		],
-		"text_rule": "PlayerClass = Melee",
+		"text_rule": "PlayerRole = Melee",
 		"id": 2929,
 		"name": "2 weapon damage ring"
 	},
@@ -522,6 +523,14 @@
 		"text_rule": "Fight = High Astromancer Solarian",
 		"id": 2989,
 		"name": "8 RA"
+	},
+	{
+		"restricted_roles": [
+			"Tank"
+		],
+		"text_rule": "PlayerRole = Tank",
+		"id": 2991,
+		"name": "aldor tank exalté"
 	},
 	{
 		"invalid": true,
