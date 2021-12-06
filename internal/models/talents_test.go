@@ -65,6 +65,11 @@ func TestTalents(t *testing.T) {
 			ExpectedSpec:              Specialization_RetributionPaladin,
 			BenefitsFromWindfuryTotem: true,
 		},
+		{
+			SubType:      "Druid",
+			Talents:      [3]int64{36, 0, 25},
+			ExpectedSpec: Specialization_RestorationDruid,
+		},
 	} {
 		t.Run(string(data.ExpectedSpec), func(tt *testing.T) {
 			talents := NewTalents(&FightAnalysis{

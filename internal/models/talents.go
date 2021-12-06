@@ -16,7 +16,18 @@ func NewTalents(fight *FightAnalysis, points [3]int64) *Talents {
 	return t
 }
 
+var guessers = []specGuesser{restokingGuesser, defaultGuesser}
+
 func (t *Talents) guessSpec() {
+	for _, guesser := range guessers {
+		if spec := guesser(t); spec != Specialization_Unknown {
+			t.Spec = spec
+			return
+		}
+	}
+}
+
+func defaultGuesser(t *Talents) Specialization {
 	for spec, data := range specs {
 		if t.fight.player.SubType == string(data.Class) {
 			match := false
@@ -29,11 +40,11 @@ func (t *Talents) guessSpec() {
 				match = t.Points[2] >= t.Points[0] && t.Points[2] >= t.Points[1]
 			}
 			if match {
-				t.Spec = spec
-				return
+				return spec
 			}
 		}
 	}
+	return Specialization_Unknown
 }
 
 func (t *Talents) BenefitsFromWindfuryTotem() bool {
@@ -196,3 +207,15 @@ var (
 		},
 	}
 )
+
+type specGuesser func(*Talents) Specialization
+
+func restokingGuesser(t *Talents) Specialization {
+	if len(t.Points) != 3 || t.fight.player.SubType != string(Class_Druid) {
+		return Specialization_Unknown
+	}
+	if t.Points[0] == 36 && t.Points[2] == 25 {
+		return Specialization_RestorationDruid
+	}
+	return Specialization_Unknown
+}
