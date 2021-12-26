@@ -4,6 +4,8 @@ import (
 	"encoding/xml"
 	"net/http"
 
+	"github.com/origin-finkle/logs/internal/logger"
+	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/semaphore"
 )
 
@@ -55,5 +57,8 @@ func (t *limitedTransport) RoundTrip(req *http.Request) (*http.Response, error) 
 		return nil, err
 	}
 	defer t.sem.Release(1)
+	logger.FromContext(req.Context()).WithFields(logrus.Fields{
+		"wowhead_url": req.URL.String(),
+	}).Debug("requesting wowhead")
 	return http.DefaultTransport.RoundTrip(req)
 }

@@ -17,7 +17,7 @@ func processCasts(ctx context.Context, fa *models.FightAnalysis) error {
 			SpellID: spellID,
 			Count:   count,
 		}
-		castInFight, err := config.GetCastInFight(spellID)
+		castInFight, err := config.GetCastInFight(ctx, spellID)
 		if err != nil {
 			if err == config.ErrCastInFightNotFound {
 				fa.Analysis.Unknown = append(fa.Analysis.Unknown, fc)

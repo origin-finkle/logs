@@ -3,6 +3,7 @@ module github.com/origin-finkle/logs
 go 1.17
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/alecthomas/kong v0.2.17
 	github.com/eapache/go-resiliency v1.2.0
 	github.com/hasura/go-graphql-client v0.4.0
@@ -13,6 +14,7 @@ require (
 )
 
 require (
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
