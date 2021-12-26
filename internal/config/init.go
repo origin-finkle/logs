@@ -6,7 +6,6 @@ import (
 	"os"
 	"path"
 	"sort"
-	"strconv"
 
 	"github.com/origin-finkle/logs/internal/common"
 	"github.com/origin-finkle/logs/internal/logger"
@@ -126,13 +125,7 @@ var cfg = []loader{
 			if err := dec.Decode(&m); err != nil {
 				return err
 			}
-			for k, v := range m {
-				id, err := strconv.ParseInt(k, 10, 64)
-				if err != nil {
-					return err
-				}
-				v.TextRule = v.CommonConfig.String()
-				v.SpellID = id
+			for _, v := range m {
 				SetCastInFight(v)
 			}
 			return nil

@@ -47,22 +47,30 @@ func GetCastInFight(ctx context.Context, id int64) (*models.CastInFight, error) 
 	return cif, nil
 }
 
+func markCIFAsInvalid(lowerRanked, higherRanked *models.CastInFight) {
+	if lowerRanked.Invalid {
+		already := data.CastInFight[lowerRanked.SuggestedSpellID]
+		if already.Rank > higherRanked.Rank {
+			// do not update as the suggested spell has a higher rank than the current one
+			return
+		}
+	}
+	lowerRanked.Invalid = true
+	lowerRanked.InvalidReason = remark.Type_CastHigherRankAvailable
+	lowerRanked.SuggestedSpellID = higherRanked.SpellID
+}
+
 func postAddCIF(cif *models.CastInFight) {
 	cifMutex.RLock()
 	defer cifMutex.RUnlock()
 	// find similar cif, if rank < current one, then mark as invalid
 	for _, castInFight := range data.CastInFight {
-		if castInFight.Name == cif.Name && castInFight.Rank < cif.Rank {
-			if castInFight.Invalid {
-				already := data.CastInFight[castInFight.SuggestedSpellID]
-				if already.Rank > cif.Rank {
-					// do not update as the suggested spell has a higher rank than the current one
-					continue
-				}
+		if castInFight.Name == cif.Name {
+			if castInFight.Rank < cif.Rank {
+				markCIFAsInvalid(castInFight, cif)
+			} else if castInFight.Rank > cif.Rank {
+				markCIFAsInvalid(cif, castInFight)
 			}
-			castInFight.Invalid = true
-			castInFight.InvalidReason = remark.Type_CastHigherRankAvailable
-			castInFight.SuggestedSpellID = cif.SpellID
 		}
 	}
 }
@@ -70,6 +78,7 @@ func postAddCIF(cif *models.CastInFight) {
 func SetCastInFight(v *models.CastInFight) {
 	cifMutex.Lock()
 	defer cifMutex.Unlock()
+	v.TextRule = v.CommonConfig.String()
 	data.CastInFight[v.SpellID] = v
 }
 
