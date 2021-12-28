@@ -200,9 +200,11 @@ func (ra *ReportAnalyzer) doFight(ctx context.Context, fight *models.Fight) erro
 	for _, playerID := range fight.FriendlyPlayers {
 		ra.setPlayerIfNeeded(ctx, playerID)
 		ra.Analysis.GetPlayerAnalysis(playerID).SetFight(&models.FightAnalysis{
-			Name:    fight.InternalName,
-			Remarks: make([]*remark.Remark, 0),
-			Casts:   make(map[int64]int64),
+			Name:      fight.InternalName,
+			StartTime: fight.StartTime,
+			EndTime:   fight.EndTime,
+			Remarks:   make([]*remark.Remark, 0),
+			Casts:     make(map[int64]int64),
 			Analysis: &models.TrueFightAnalysis{
 				Items:       make([]models.FightCast, 0),
 				Spells:      make([]models.FightCast, 0),

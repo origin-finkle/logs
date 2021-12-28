@@ -15,6 +15,10 @@ type Remark struct {
 	SuggestedSpellID             int64  `json:"suggested_spell_id,omitempty"`
 	SpellWowheadAttr             string `json:"spell_wowhead_attr,omitempty"`
 	HigherRankedSpellWowheadAttr string `json:"higher_ranked_spell_wowhead_attr,omitempty"`
+	PossibleCasts                int64  `json:"possible_casts,omitempty"`
+	ActualCasts                  int64  `json:"actual_casts,omitempty"`
+	Threshold                    int64  `json:"threshold,omitempty"`
+	ActualPercentageOfUse        int64  `json:"actual_percentage_of_use,omitempty"`
 
 	UUID string `json:"uuid"`
 }

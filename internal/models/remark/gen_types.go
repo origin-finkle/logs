@@ -21,4 +21,5 @@ const (
 	Type_CastHigherRankAvailable       = "cast_higher_rank_available"
 	Type_MissingItemInSlot             = "missing_item_in_slot"
 	Type_MetaNotActivated              = "meta_not_activated"
+	Type_CouldMaximizeCasts            = "could_maximize_casts"
 )

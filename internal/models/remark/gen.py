@@ -27,6 +27,14 @@ HigherRankedSpellWowheadAttr = {
     "json": "higher_ranked_spell_wowhead_attr",
     "type": "string",
 }
+PossibleCasts = {"name": "PossibleCasts", "json": "possible_casts", "type": "int64"}
+ActualCasts = {"name": "ActualCasts", "json": "actual_casts", "type": "int64"}
+Threshold = {"name": "Threshold", "json": "threshold", "type": "int64"}
+ActualPercentageOfUse = {
+    "name": "ActualPercentageOfUse",
+    "json": "actual_percentage_of_use",
+    "type": "int64",
+}
 
 db = {
     "InvalidGem": {
@@ -104,6 +112,17 @@ db = {
     "MetaNotActivated": {
         "str": "meta_not_activated",
         "fields": [ItemWowheadAttr, WowheadAttr],
+    },
+    "CouldMaximizeCasts": {
+        "str": "could_maximize_casts",
+        "fields": [
+            SpellID,
+            PossibleCasts,
+            ActualCasts,
+            Threshold,
+            ActualPercentageOfUse,
+            SpellWowheadAttr,
+        ],
     },
 }
 

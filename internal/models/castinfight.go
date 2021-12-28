@@ -11,4 +11,5 @@ type CastInFight struct {
 	ItemID           int64  `json:"item_id,omitempty"`
 	CooldownID       string `json:"cooldown_id,omitempty"`
 	SuggestedSpellID int64  `json:"suggested_spell_id,omitempty"`
+	Cooldown         uint64 `json:"cooldown,omitempty"`
 }
