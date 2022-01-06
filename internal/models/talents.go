@@ -214,7 +214,7 @@ func restokingGuesser(t *Talents) Specialization {
 	if len(t.Points) != 3 || t.fight.player.SubType != string(Class_Druid) {
 		return Specialization_Unknown
 	}
-	if t.Points[0] == 36 && t.Points[2] == 25 {
+	if t.Points[0] >= 33 && t.Points[0] <= 37 && t.Points[2] >= 25 {
 		return Specialization_RestorationDruid
 	}
 	return Specialization_Unknown

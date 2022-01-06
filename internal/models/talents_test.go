@@ -70,6 +70,11 @@ func TestTalents(t *testing.T) {
 			Talents:      [3]int64{36, 0, 25},
 			ExpectedSpec: Specialization_RestorationDruid,
 		},
+		{
+			SubType:      "Druid",
+			Talents:      [3]int64{34, 0, 27},
+			ExpectedSpec: Specialization_RestorationDruid,
+		},
 	} {
 		t.Run(string(data.ExpectedSpec), func(tt *testing.T) {
 			talents := NewTalents(&FightAnalysis{
