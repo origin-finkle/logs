@@ -50,5 +50,6 @@ var (
 		"Draénite dorée":       "yellow",
 		"Tourmaline":           "red",
 		"Topaze noble":         "yellow",
+		"Topaze ornée":         "orange",
 	}
 )
