@@ -2,7 +2,6 @@ package config
 
 import (
 	"context"
-	"fmt"
 	"sync"
 
 	"github.com/origin-finkle/logs/internal/models"
@@ -38,8 +37,5 @@ func GetGem(id int64) (*models.Gem, error) {
 func SetGem(gem *models.Gem) {
 	gemMu.Lock()
 	defer gemMu.Unlock()
-	if data.Gems[gem.ID] != nil {
-		panic(fmt.Errorf("gem %d is already stored in cache", gem.ID))
-	}
 	data.Gems[gem.ID] = gem
 }
