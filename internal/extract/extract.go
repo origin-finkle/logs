@@ -28,6 +28,7 @@ type Extract struct {
 	ReportIDs     []string `arg:"" optional:"" name:"report-id" help:"Report ID"`
 	Folder        string   `name:"folder" help:"Folder to store data in" type:"existingdir"`
 	CheckOnRemote bool     `name:"check-on-remote" help:"Instead of checking locally, check on remote"`
+	BeginDate     string   `name:"begin-date" help:"Override state date of search"`
 }
 
 func (e *Extract) Extract(app *kong.Context) {
@@ -37,7 +38,16 @@ func (e *Extract) Extract(app *kong.Context) {
 	}
 	if len(e.ReportIDs) == 0 {
 		end := time.Now()
-		start := end.AddDate(0, 0, -14)
+		var start time.Time
+		if e.BeginDate != "" {
+			var err error
+			start, err = time.Parse("2006-01-02", e.BeginDate)
+			if err != nil {
+				app.Fatalf("invalid begin date: %s", err)
+			}
+		} else {
+			start = end.AddDate(0, 0, -14)
+		}
 		var q ListReports
 		err := wcl.Query(ctx, &q, map[string]interface{}{
 			"guildID":   graphql.Int(516114),
