@@ -18,4 +18,6 @@ jobs:
           version: v1.43.0
           skip-go-installation: true
       - name: Tests
-        run: bash test.sh
+        run: |
+          svn checkout https://github.com/origin-finkle/wcl-origin/trunk/data/config
+          CONFIG_FOLDER=`pwd`/config bash test.sh
