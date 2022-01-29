@@ -1,6 +1,7 @@
 package models
 
 import (
+	"strings"
 	"sync"
 
 	"github.com/origin-finkle/logs/internal/models/remark"
@@ -19,6 +20,13 @@ type FightAnalysis struct {
 	Analysis  *TrueFightAnalysis `json:"analysis"`
 	StartTime int64              `json:"start_time"`
 	EndTime   int64              `json:"end_time"`
+}
+
+func (fa *FightAnalysis) FightName() string {
+	if idx := strings.Index(fa.Name, "- Wipe"); idx >= 0 {
+		return fa.Name[:idx-1]
+	}
+	return fa.Name
 }
 
 func (fa *FightAnalysis) Duration() int64 {

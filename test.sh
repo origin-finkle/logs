@@ -1,4 +1,9 @@
 #!/bin/bash
 set -e
 
-CONFIG_FOLDER=$GOPATH/src/github.com/origin-finkle/wcl-origin/data/config go test -v ./... $@
+if [ -z "$CONFIG_FOLDER" ]
+then
+    CONFIG_FOLDER=$GOPATH/src/github.com/origin-finkle/wcl-origin/data/config
+fi
+
+CONFIG_FOLDER=$CONFIG_FOLDER go test -v ./... $@
