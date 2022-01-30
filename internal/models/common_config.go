@@ -94,7 +94,7 @@ func (cc CommonConfig) IsRestricted(ctx context.Context, fa *FightAnalysis) bool
 		}
 	}
 	if len(cc.RestrictedFights) > 0 {
-		if !in(fa.Name, cc.RestrictedFights) {
+		if !in(fa.FightName(), cc.RestrictedFights) {
 			logger.FromContext(ctx).Debugf("fight %s is not in %v", fa.Name, cc.RestrictedFights)
 			return true
 		}
