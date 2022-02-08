@@ -50,7 +50,7 @@ func (e *Extract) Extract(app *kong.Context) {
 		}
 		var q ListReports
 		err := wcl.Query(ctx, &q, map[string]interface{}{
-			"guildID":   graphql.Int(516114),
+			"guildID":   graphql.Int(643830),
 			"startTime": graphql.Float(start.Unix() * 1e3),
 			"endTime":   graphql.Float(end.Unix() * 1e3),
 		})
