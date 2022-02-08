@@ -40,16 +40,22 @@ func GetGem(ctx context.Context, gemID int64) (*Gem, error) {
 
 var (
 	nameToColor = map[string]string{
-		"Rubis vivant":         "red",
-		"Pierre d'aube":        "yellow",
-		"Diamant tonneterre":   "meta",
-		"Tanzanite":            "purple",
-		"Opale de feu":         "orange",
-		"Spessarite de flamme": "orange",
-		"Diamant brûleciel":    "meta",
-		"Draénite dorée":       "yellow",
-		"Tourmaline":           "red",
-		"Topaze noble":         "yellow",
-		"Topaze ornée":         "orange",
+		"Rubis vivant":           "red",
+		"Pierre d'aube":          "yellow",
+		"Diamant tonneterre":     "meta",
+		"Tanzanite":              "purple",
+		"Opale de feu":           "orange",
+		"Spessarite de flamme":   "orange",
+		"Diamant brûleciel":      "meta",
+		"Draénite dorée":         "yellow",
+		"Tourmaline":             "red",
+		"Topaze noble":           "yellow",
+		"Topaze ornée":           "orange",
+		"Saphir empyréen":        "blue",
+		"Oeil de lion":           "yellow",
+		"Emeraude d'écume":       "green",
+		"Pyrolithe":              "orange",
+		"Spinelle cramoisi":      "red",
+		"Améthyste chantelombre": "purple",
 	}
 )
