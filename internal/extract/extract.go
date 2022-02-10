@@ -119,6 +119,46 @@ func (e *Extract) shouldExtractReport(ctx context.Context, reportCode string) bo
 	return resp.StatusCode == 404 // 404 means we don't have the file on remote
 }
 
+var bossNames = map[string]bool{
+	"Hydross the Unstable":      true,
+	"Fathom-Lord Karathress":    true,
+	"Lady Vashj":                true,
+	"Morogrim Tidewalker":       true,
+	"The Lurker Below":          true,
+	"Leotheras the Blind":       true,
+	"Magtheridon":               true,
+	"Moroes":                    true,
+	"Attumen the Huntsman":      true,
+	"Maiden of Virtue":          true,
+	"Netherspite":               true,
+	"Opera Hall":                true,
+	"Prince Malchezaar":         true,
+	"Shade of Aran":             true,
+	"Terestian Illhoof":         true,
+	"The Curator":               true,
+	"Nightbane":                 true,
+	"High King Maulgar":         true,
+	"Gruul the Dragonkiller":    true,
+	"Al'ar":                     true,
+	"Void Reaver":               true,
+	"High Astromancer Solarian": true,
+	"Kael'tha Sunstrider":       true,
+	"Rage Winterchill":          true,
+	"Anetheron":                 true,
+	"Kaz'rogal":                 true,
+	"Azgalor":                   true,
+	"Archimonde":                true,
+	"High Warlord Naj'entus":    true,
+	"Supremus":                  true,
+	"Shade of Akama":            true,
+	"Teron Gorefiend":           true,
+	"Gurtogg Bloodboil":         true,
+	"Reliquary of Souls":        true,
+	"Mother Shahraz":            true,
+	"The Illidari Council":      true,
+	"Illidan Stormrage":         true,
+}
+
 func doReport(ctx context.Context, file io.Writer, code string) error {
 	var q GetReport
 	err := wcl.Query(ctx, &q, map[string]interface{}{
@@ -131,10 +171,17 @@ func doReport(ctx context.Context, file io.Writer, code string) error {
 	report := q.toReport()
 	fightIndex := map[string]int{}
 	var g errgroup.Group
+	trashIdx := 0
 	for _, fight := range report.Fights {
 		fightIndex[fight.Name]++
 		if !fight.Kill {
-			fight.InternalName = fmt.Sprintf("%s - Wipe %d (%.1f%%)", fight.InternalName, fightIndex[fight.Name], fight.FightPercentage)
+			if bossNames[fight.Name] {
+				fight.InternalName = fmt.Sprintf("%s - Wipe %d (%.1f%%)", fight.InternalName, fightIndex[fight.Name], fight.FightPercentage)
+			} else {
+				// trash
+				trashIdx++
+				fight.InternalName = fmt.Sprintf("Trash %d - %s", trashIdx, fight.InternalName)
+			}
 		}
 		f := fight // redefine for closure
 		g.Go(func() error {

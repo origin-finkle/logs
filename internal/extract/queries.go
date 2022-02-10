@@ -45,7 +45,7 @@ type GetReport struct {
 				FriendlyPlayers []graphql.Int
 				FightPercentage graphql.Float
 				Kill            graphql.Boolean
-			} `graphql:"fights(killType: Encounters)"`
+			} `graphql:"fights(killType: All)"`
 		} `graphql:"report(code: $code)"`
 	}
 }
