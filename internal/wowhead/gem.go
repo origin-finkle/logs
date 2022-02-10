@@ -57,5 +57,6 @@ var (
 		"Pyrolithe":              "orange",
 		"Spinelle cramoisi":      "red",
 		"Améthyste chantelombre": "purple",
+		"Chrysoprase":            "green",
 	}
 )

@@ -43,6 +43,10 @@ func Process(ctx context.Context, ev json.RawMessage, analysis *models.Analysis,
 		return nil // event should not be processed as player does not exist
 	}
 	fa := pa.GetFight(fightName)
+	if fa == nil {
+		// sometimes fight is not found, can be due to MC or whatever, just skip it
+		return nil
+	}
 	ctx = logger.ContextWithLogger(ctx, logger.FromContext(ctx).WithField("player", pa.Actor.Name))
 	return event.Process(ctx, analysis, pa, fa)
 }
