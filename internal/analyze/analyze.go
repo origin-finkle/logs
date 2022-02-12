@@ -15,6 +15,7 @@ import (
 	"github.com/origin-finkle/logs/internal/models"
 	"github.com/origin-finkle/logs/internal/models/events"
 	"github.com/origin-finkle/logs/internal/models/remark"
+	"github.com/origin-finkle/logs/internal/version"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sync/semaphore"
@@ -59,6 +60,7 @@ func (an *Analyze) Run(app *kong.Context) {
 		reportID := reportID // prevent closure issues
 		g.Go(func() error {
 			if err := sem.Acquire(context.TODO(), 1); err != nil {
+				logger.FromContext(context.TODO()).WithError(err).Warn("could not acquire semaphore")
 				return err
 			}
 			defer sem.Release(1)
@@ -91,6 +93,7 @@ func (an *Analyze) doReport(reportID string) error {
 		Cmd:     an,
 	}
 	if err := reportAnalyzer.Analyze(ctx); err != nil {
+		logger.FromContext(ctx).WithError(err).Warn("failed to analyze report")
 		return err
 	}
 	logger.FromContext(ctx).Info("analysis done")
@@ -116,7 +119,8 @@ func (ra *ReportAnalyzer) Analyze(ctx context.Context) error {
 		Actors:    []string{},
 	}
 	ra.Analysis = &models.Analysis{
-		Data: make(map[int64]*models.PlayerAnalysis),
+		Data:       make(map[int64]*models.PlayerAnalysis),
+		AppVersion: version.Version,
 	}
 	var g errgroup.Group
 	for _, fight := range ra.Report.Fights {

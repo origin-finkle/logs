@@ -1,6 +1,7 @@
 package models
 
 type Report struct {
+	AppVersion string      `json:"app_version"`
 	Code       string      `json:"code"`
 	EndTime    int64       `json:"endTime"`
 	StartTime  int64       `json:"startTime"`

@@ -21,7 +21,7 @@ var (
 	clientSecret string
 	httpClient   = &http.Client{
 		Transport: &customRoundTripper{
-			sem: semaphore.NewWeighted(8),
+			sem: semaphore.NewWeighted(4),
 		},
 	}
 	token      string

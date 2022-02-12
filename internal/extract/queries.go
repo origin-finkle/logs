@@ -5,6 +5,7 @@ import (
 
 	"github.com/hasura/go-graphql-client"
 	"github.com/origin-finkle/logs/internal/models"
+	"github.com/origin-finkle/logs/internal/version"
 )
 
 type GetReport struct {
@@ -52,10 +53,11 @@ type GetReport struct {
 
 func (r GetReport) toReport() *models.Report {
 	report := &models.Report{
-		Code:      string(r.ReportData.Report.Code),
-		Title:     string(r.ReportData.Report.Title),
-		StartTime: int64(r.ReportData.Report.StartTime),
-		EndTime:   int64(r.ReportData.Report.EndTime),
+		AppVersion: version.Version,
+		Code:       string(r.ReportData.Report.Code),
+		Title:      string(r.ReportData.Report.Title),
+		StartTime:  int64(r.ReportData.Report.StartTime),
+		EndTime:    int64(r.ReportData.Report.EndTime),
 		Zone: models.Zone{
 			ID: int64(r.ReportData.Report.Zone.ID),
 		},

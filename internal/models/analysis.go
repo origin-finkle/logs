@@ -1,7 +1,6 @@
 package models
 
 import (
-	"encoding/json"
 	"sort"
 	"sync"
 
@@ -9,8 +8,9 @@ import (
 )
 
 type Analysis struct {
-	mu   sync.RWMutex
-	Data map[int64]*PlayerAnalysis
+	mu         sync.RWMutex
+	Data       map[int64]*PlayerAnalysis `json:"data"`
+	AppVersion string                    `json:"app_version"`
 }
 
 func (a *Analysis) FilterPlayers(predicate func(*PlayerAnalysis) bool) []*PlayerAnalysis {
@@ -38,10 +38,6 @@ func (a *Analysis) SetPlayerAnalysis(playerID int64, pa *PlayerAnalysis) {
 	defer a.mu.Unlock()
 
 	a.Data[playerID] = pa
-}
-
-func (a *Analysis) MarshalJSON() ([]byte, error) {
-	return json.Marshal(a.Data)
 }
 
 type PlayerAnalysis struct {

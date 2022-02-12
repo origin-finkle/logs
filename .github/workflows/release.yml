@@ -15,3 +15,4 @@ jobs:
         goarch: amd64
         project_path: ./cmd/logs
         goversion: 1.17
+        ldflags: "-X 'github.com/origin-finkle/logs/internal/version.Version=${RELEASE_TAG}'"

@@ -3,6 +3,7 @@ package logger
 import (
 	"context"
 
+	"github.com/origin-finkle/logs/internal/version"
 	"github.com/sirupsen/logrus"
 )
 
@@ -19,7 +20,7 @@ func ContextWithLogger(ctx context.Context, log *logrus.Entry) context.Context {
 func FromContext(ctx context.Context) *logrus.Entry {
 	logger := ctx.Value(Logger)
 	if logger == nil {
-		return logrus.WithContext(ctx)
+		return logrus.WithContext(ctx).WithField("app_version", version.Version)
 	}
 	return logger.(*logrus.Entry)
 }
