@@ -15,7 +15,7 @@ type Cast struct {
 }
 
 func (c *Cast) Process(ctx context.Context, analysis *models.Analysis, pa *models.PlayerAnalysis, fa *models.FightAnalysis) error {
-	fa.AddCast(c.AbilityGameID, 1)
+	fa.AddCast(c.AbilityGameID, c.Timestamp, 1)
 	return nil
 }
 

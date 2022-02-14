@@ -20,6 +20,7 @@ type FightAnalysis struct {
 	Analysis  *TrueFightAnalysis `json:"analysis"`
 	StartTime int64              `json:"start_time"`
 	EndTime   int64              `json:"end_time"`
+	Timeline  []*CastTimeline    `json:"timeline"`
 }
 
 func (fa *FightAnalysis) FightName() string {
@@ -33,8 +34,12 @@ func (fa *FightAnalysis) Duration() int64 {
 	return int64((fa.EndTime - fa.StartTime) / 1000)
 }
 
-func (fa *FightAnalysis) AddCast(ability, count int64) {
+func (fa *FightAnalysis) AddCast(ability, timestamp, count int64) {
 	fa.Casts[ability] += 1
+	fa.Timeline = append(fa.Timeline, &CastTimeline{
+		Ability:   ability,
+		Timestamp: timestamp,
+	})
 }
 
 func (fa *FightAnalysis) AddRemark(metadata remark.Metadata) {
